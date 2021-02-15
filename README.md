@@ -1,8 +1,6 @@
 This repo contains a small UI project written in React. Unfortunately it has many errors and 
 outmoded coding practices, particularly in Launches.jsx, the components and the actions. The Layout, routing,
-stores and services are more up to date, so don't waste too much of your time on them (although
-feel free to give feedback or make fixes if you think significant improvements are possible and you want to take 
-the time — but they're not necessarily intended to be in scope of the challenge.)
+stores and services are more up to date (although feel free to give feedback in the form of commments or make fixes if you think significant improvements are possible and you want to take the time — but they're not necessarily intended to be in scope of the challenge.)
 
 The repo is designed to be simple to start and run with just npm and any recent version of node.
 It is built on webpack and uses the webpack development server, so all you should need to do is clone the
@@ -14,15 +12,15 @@ helps you.
  clean it up, you should be able to follow the general react/redux and REST pattern for loading data and 
  outputting UI elements.
 
-The app pulls data about launches from the public SpaceX api. 
+The app pulls data about launches from the public SpaceX api.
 
 **Your task**
 
-- Add a feature where clicking on any given launch will expand that launch and reveal more info about the rocket used in the launch
-- Clicking on another launch will another other launch open and expand the one clicked instead
-- If a launch is already open and being viewed, clicking on it again will shrink it
+- Add a feature where clicking on any given launch will expand that launch and reveal more info about the rocket used in the launch (specifically we'll want to see the Rocket ID, Cost Per Launch, and Description)
+- Clicking on another launch will cause the currently expanded launch to close, and expand the one that was clicked instead
+- If a launch is already expanded, clicking on it again will close it
 
-Feel free to add files, breakup components or modularize and generally clean up code (Pleaese be weary of time! First get it working).
+Feel free to add files, breakup components or modularize and generally clean up code (Please be weary of time! First get it working).
 Place more emphasis on usability than graphic design, code with the assumption that colors, borders and margins might change
 according to forthcoming design requirements and your job is to get the feature working in a well structured way.
 
