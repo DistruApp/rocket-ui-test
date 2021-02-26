@@ -1,18 +1,10 @@
-This repo contains a small UI project written in React. Unfortunately it has many errors and 
-outmoded coding practices, particularly in Launches.jsx, the components and the actions. The Layout, routing,
-stores and services are more up to date (although feel free to give feedback in the form of commments or make fixes if you think significant improvements are possible and you want to take the time — but they're not necessarily intended to be in scope of the challenge.)
+This repo contains a small UI project written in React. Unfortunately it has many errors and outmoded coding practices, particularly in Launches.jsx, the components and the actions. The Layout, routing, stores and services are more up to date (although feel free to give feedback in the form of commments or make fixes if you think significant improvements are possible and you want to take the time — but they're not necessarily intended to be in scope of the challenge.)
 
-The repo is designed to be simple to start and run with just npm and any recent version of node.
-It is built on webpack and uses the webpack development server, so all you should need to do is clone the
-repo and start the app in development mode with npm start and view it on port 7357. All the tools 
-for writing code should be included, but feel free to add additional dependencies if you find that
-helps you.
+The repo is designed to be simple to start and run with just npm and any recent version of node. It is built on webpack and uses the webpack development server, so all you should need to do is clone the repo and start the app in development mode with npm start and view it on port 7357. All the tools for writing code should be included, but feel free to add additional dependencies if you find that helps you.
 
- While the code is intentionally a little dirty around the edges in the hopes you will show us how you would 
- clean it up, you should be able to follow the general react/redux and REST pattern for loading data and 
- outputting UI elements.
+While the code is intentionally a little dirty around the edges in the hopes you will show us how you would clean it up, you should be able to follow the general react/redux and REST pattern for loading data and outputting UI elements.
 
-The app pulls data about launches from the public SpaceX api.
+The app pulls data about launches from the public SpaceX API.
 
 **Your task**
 
@@ -20,14 +12,11 @@ The app pulls data about launches from the public SpaceX api.
 - Clicking on another launch will cause the currently expanded launch to close, and expand the one that was clicked instead
 - If a launch is already expanded, clicking on it again will close it
 
-Feel free to add files, breakup components or modularize and generally clean up code (Please be weary of time! First get it working).
-Place more emphasis on usability than graphic design, code with the assumption that colors, borders and margins might change
-according to forthcoming design requirements and your job is to get the feature working in a well structured way.
+Feel free to add files, breakup components or modularize and generally clean up code (Please be weary of time! First get it working). Place more emphasis on usability than user experience over amazing pixle perfect visuals (as designs may change over time).
 
-The development challenge is build against the space-x public REST API `https://documenter.getpostman.com/view/2025350/RWaEzAiG`
-You should be able to easily find the information there make the call and extract the data needed.
+The development challenge is build against the SpaceX public REST API `https://documenter.getpostman.com/view/2025350/RWaEzAiG`
 
-Good Luck.
+You should be able to easily find the information there make the call and extract the data needed. Good Luck!
 
 ### What were using
 
