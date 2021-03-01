@@ -1,50 +1,38 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import MasterLayoutHoc from '../components/MasterLayoutHoc';
 import { shouldFetchLaunches, fetchLaunches } from "../actions/Launches";
 import Launch from '../components/Launch';
 
-class LaunchesView extends Component {
-  componentDidMount() {
-    const { dispatch, launchesCollection } = this.props;
-    if (shouldFetchLaunches(launchesCollection)) fetchLaunches(dispatch);
+const LaunchesView = ({ dispatch, launchCollection }) => {
+  useEffect(() => {
+    if (shouldFetchLaunches(launchCollection)) fetchLaunches(dispatch);
+  }, [])
+
+  if (!launchCollection || launchCollection.fetching) {
+    return <div> LOADING </div>;
   }
 
-  getContent() {
-    const { launchCollection } = this.props;
+  const { launches } = launchCollection;
 
-    if (!launchCollection || launchCollection.fetching) {
-      return <div> LOADING </div>;
-    }
-
-    if (!launchCollection.launches.length) {
-      return <div> NO DATA </div>;
-    }
-
-    let launches = [];
-
-    for (let i = 0; i < launchCollection.launches.length; i++) {
-      const launch = launchCollection.launches[i];
-
-      launches.push(
-        <Launch {...{
-          key: launch.id,
-          launch
-        }} />
-
-      )
-    }
-
-    return <ul>{launches}</ul>;
+  if (!launches.length) {
+    return <div> NO DATA </div>;
   }
 
-  render() {
-    return (
-      <div>
-        <h2> SpaceX launches </h2>
-        {this.getContent()}
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <h2> SpaceX launches </h2>
+      <ul>
+        {launches.map((launch) => {
+          return (
+            <Launch
+              key={launch.id}
+              launch={launch}
+            />
+          )
+        })}
+      </ul>
+    </div>
+  );
+};
 
 export default MasterLayoutHoc(LaunchesView, 'launches');
