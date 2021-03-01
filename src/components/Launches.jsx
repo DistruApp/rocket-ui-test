@@ -8,13 +8,20 @@ const Launches = ({ launches }) => {
   }, [launches]);
 
   const [activeLaunchId, setActiveLaunchId] = useState(null);
+  const handleClick = (launchId) => {
+    if (activeLaunchId === launchId) {
+      setActiveLaunchId(null);
+    } else {
+      setActiveLaunchId(launchId);
+    }
+  }
 
   return (
     <ul>
       {sortedLaunches.map((launch) => {
         return (
           <li
-            onClick={() => setActiveLaunchId(launch.id)}
+            onClick={() => handleClick(launch.id)}
             key={launch.id}
           >
             <Launch
