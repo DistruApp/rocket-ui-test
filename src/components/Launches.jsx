@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import Launch from '../components/Launch';
 
 const Launches = ({ launches }) => {
+  const sortedLaunches = useMemo(() => {
+    return launches.sort((a, b) => a.flight_number - b.flight_number)
+  }, [launches]);
+
   return (
     <ul>
-      {launches.map((launch) => {
+      {sortedLaunches.map((launch) => {
         return (
           <Launch
             key={launch.id}
