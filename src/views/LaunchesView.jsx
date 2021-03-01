@@ -27,7 +27,7 @@ class LaunchesView extends Component {
 
       launches.push(
         <Launch {...{
-          key: launch.launch_id,
+          key: launch.id,
           launch
         }} />
 
