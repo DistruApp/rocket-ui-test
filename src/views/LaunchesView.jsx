@@ -29,7 +29,7 @@ const LaunchesView = ({ dispatch, launchCollection }) => {
 };
 
 
-const mapStateToProps = state => state;
+const mapStateToProps = ({ launchCollection }) => { return { launchCollection } };
 const mapDispatchToProps = dispatch => ({ dispatch });
 
 export default connect(

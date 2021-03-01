@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import Launch from '../components/Launch';
 
@@ -7,14 +7,21 @@ const Launches = ({ launches }) => {
     return launches.sort((a, b) => a.flight_number - b.flight_number)
   }, [launches]);
 
+  const [activeLaunchId, setActiveLaunchId] = useState(null);
+
   return (
     <ul>
       {sortedLaunches.map((launch) => {
         return (
-          <Launch
+          <li
+            onClick={() => setActiveLaunchId(launch.id)}
             key={launch.id}
-            launch={launch}
-          />
+          >
+            <Launch
+              launch={launch}
+              active={launch.id === activeLaunchId}
+            />
+          </li>
         )
       })}
     </ul>

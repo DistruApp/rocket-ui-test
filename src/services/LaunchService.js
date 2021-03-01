@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 const SPACEX_URL = 'https://api.spacexdata.com/v4';
-const launchesUrl = `${SPACEX_URL}/launches`;
+const getLaunchesUrl = `${SPACEX_URL}/launches`;
 
 const api = axios.create();
 
 const launchService = {
-  get: () => api.get(`${launchesUrl}`)
+  getAll: () => api.get(getLaunchesUrl)
 };
 
 export default launchService;
