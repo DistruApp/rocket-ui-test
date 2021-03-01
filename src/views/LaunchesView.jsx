@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { connect } from "react-redux";
 
 import MasterLayoutHoc from '../components/MasterLayoutHoc';
 import { shouldFetchLaunches, fetchLaunches } from "../actions/Launches";
@@ -27,4 +28,11 @@ const LaunchesView = ({ dispatch, launchCollection }) => {
   );
 };
 
-export default MasterLayoutHoc(LaunchesView, 'launches');
+
+const mapStateToProps = state => state;
+const mapDispatchToProps = dispatch => ({ dispatch });
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MasterLayoutHoc(LaunchesView, 'launches'));
