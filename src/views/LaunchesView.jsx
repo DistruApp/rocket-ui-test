@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
+
 import MasterLayoutHoc from '../components/MasterLayoutHoc';
 import { shouldFetchLaunches, fetchLaunches } from "../actions/Launches";
-import Launch from '../components/Launch';
+import Launches from '../components/Launches';
 
 const LaunchesView = ({ dispatch, launchCollection }) => {
   useEffect(() => {
@@ -21,16 +22,7 @@ const LaunchesView = ({ dispatch, launchCollection }) => {
   return (
     <div>
       <h2> SpaceX launches </h2>
-      <ul>
-        {launches.map((launch) => {
-          return (
-            <Launch
-              key={launch.id}
-              launch={launch}
-            />
-          )
-        })}
-      </ul>
+      <Launches launches={launches}/>
     </div>
   );
 };
