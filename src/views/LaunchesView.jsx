@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import ConnectedView from './ConnectedView';
-import {fetchLaunchesIfNeeded} from "../actions/Launches";
+import MasterLayoutHoc from '../components/MasterLayoutHoc';
+import { shouldFetchLaunches, fetchLaunches } from "../actions/Launches";
 import Launch from '../components/Launch';
 
 class LaunchesView extends Component {
   componentDidMount() {
     const { dispatch, launchesCollection } = this.props;
-    fetchLaunchesIfNeeded({ dispatch, launchesCollection });
+    if (shouldFetchLaunches(launchesCollection)) fetchLaunches(dispatch);
   }
 
   getContent() {
@@ -47,4 +47,4 @@ class LaunchesView extends Component {
   }
 }
 
-export default ConnectedView(LaunchesView, 'launches');
+export default MasterLayoutHoc(LaunchesView, 'launches');

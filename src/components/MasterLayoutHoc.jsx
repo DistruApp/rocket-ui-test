@@ -6,7 +6,7 @@ import Navigation from '../components/Navigation';
 
 const menu = Navigation();
 
-function MasterLayoutHOC(WrappedComponent, pageName) {
+function MasterLayoutHoc(WrappedComponent, pageName) {
   class MasterLayoutImpl extends Component {
     render() {
 
@@ -35,4 +35,4 @@ function MasterLayoutHOC(WrappedComponent, pageName) {
   )(MasterLayoutImpl);
 }
 
-export default MasterLayoutHOC;
+export default MasterLayoutHoc;
