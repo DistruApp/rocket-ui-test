@@ -11,11 +11,11 @@ const LaunchesView = ({ dispatch, launchCollection }) => {
     if (shouldFetchLaunches(launchCollection)) fetchLaunches(dispatch);
   }, [])
 
-  if (!launchCollection || launchCollection.fetching) {
+  const { launches } = launchCollection;
+
+  if (launchCollection.fetching) {
     return <div> LOADING </div>;
   }
-
-  const { launches } = launchCollection;
 
   if (!launches.length) {
     return <div> NO DATA </div>;

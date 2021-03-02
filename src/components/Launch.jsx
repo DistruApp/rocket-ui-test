@@ -6,7 +6,7 @@ import { fetchRocket } from "../actions/Rockets";
 import { getRocket } from "../queries/Rockets";
 import DetailedRocket from "./DetailedRocket";
 
-const Launch = ({ launch, active, rocket, dispatch, onClick }) => {
+export const Launch = ({ launch, active, rocket, dispatch, onClick }) => {
   const rocketId = launch.rocket;
   // Fetching in this component so that when fetch occurs, only this component
   // updates and not all the other launches
