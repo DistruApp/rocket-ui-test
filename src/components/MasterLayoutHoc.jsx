@@ -1,25 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import Layout from './Layout';
-import Navigation from '../components/Navigation';
+import Navigation from "./Navigation";
 
 const menu = Navigation();
 
 function MasterLayoutHoc(WrappedComponent, pageName) {
-  class MasterLayoutImpl extends Component {
-    render() {
+  const MasterLayoutImpl = (props) => {
+    const layoutProps = {
+      menu,
+      pageName
+    };
 
-      const layoutProps = {
-        menu,
-        pageName
-      };
-
-      return (
-        <Layout {...layoutProps}>
-          <WrappedComponent {...this.props} />
-        </Layout>
-      );
-    }
+    return (
+      <Layout {...layoutProps}>
+        <WrappedComponent {...props} />
+      </Layout>
+    );
   }
 
   return MasterLayoutImpl;

@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 
-import { shouldFetchRocket, fetchRocket } from "../actions/Rockets";
+import { fetchRocket } from "../actions/Rockets";
 import { getRocket } from "../queries/Rockets";
 import DetailedRocket from "./DetailedRocket";
 
@@ -13,13 +14,40 @@ const Launch = ({ launch, active, rocket, dispatch, onClick }) => {
 
   return (
     <div>
-      <h2 style={{ color: '#1a0dab', cursor: 'pointer' }} onClick={() => onClick()}> { launch.name } </h2>
+      <h2>
+        <span
+          style={{ color: '#1a0dab', cursor: 'pointer' }}
+          onClick={() => onClick()}
+          tabIndex="0"
+          role="button"
+          // on pressing enter, for people with disabilities
+          onKeyPress={(e) => e.charCode === 13 && onClick()}
+        >
+          { launch.name }
+        </span>
+      </h2>
       <div> Flight Number: { launch.flight_number } </div>
       { active && rocket && rocket.fetching && 'Loading...' }
       { active && rocket && !rocket.fetching && <DetailedRocket rocket={rocket} /> }
     </div>
   );
-}
+};
+Launch.propTypes = {
+  launch: PropTypes.shape({
+    flight_number: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    rocket: PropTypes.string.isRequired
+  }).isRequired,
+  active: PropTypes.bool.isRequired,
+  rocket: PropTypes.shape({
+    fetching: PropTypes.bool
+  }),
+  dispatch: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired
+};
+Launch.defaultProps = {
+  rocket: null
+};
 
 const mapStateToProps = ({ rocketCollection }, { launch: { rocket: rocketId } }) => {
   const rocket = getRocket(rocketCollection, rocketId);

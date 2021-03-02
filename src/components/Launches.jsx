@@ -1,11 +1,10 @@
 import React, { useMemo, useState } from 'react';
+import PropTypes from 'prop-types';
 
-import Launch from '../components/Launch';
+import Launch from "./Launch";
 
 const Launches = ({ launches }) => {
-  const sortedLaunches = useMemo(() => {
-    return launches.sort((a, b) => a.flight_number - b.flight_number)
-  }, [launches]);
+  const sortedLaunches = useMemo(() => launches.sort((a, b) => a.flight_number - b.flight_number), [launches]);
 
   const [activeLaunchId, setActiveLaunchId] = useState(null);
   const handleClick = (launchId) => {
@@ -18,8 +17,7 @@ const Launches = ({ launches }) => {
 
   return (
     <ul>
-      {sortedLaunches.map((launch) => {
-        return (
+      {sortedLaunches.map((launch) => (
           <li key={launch.id}>
             <Launch
               launch={launch}
@@ -27,10 +25,16 @@ const Launches = ({ launches }) => {
               onClick={() => handleClick(launch.id)}
             />
           </li>
-        )
-      })}
+        ))}
     </ul>
   );
 };
+Launches.propTypes = {
+  launches: PropTypes.arrayOf(
+    PropTypes.shape({
+      flight_number: PropTypes.number.isRequired
+    })
+  ).isRequired
+}
 
 export default Launches;

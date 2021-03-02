@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 
 import MasterLayoutHoc from '../components/MasterLayoutHoc';
@@ -27,9 +28,16 @@ const LaunchesView = ({ dispatch, launchCollection }) => {
     </div>
   );
 };
+LaunchesView.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  launchCollection: PropTypes.shape({
+    fetching: PropTypes.bool,
+    launches: PropTypes.arrayOf(PropTypes.shape({}))
+  }).isRequired
+};
 
 
-const mapStateToProps = ({ launchCollection }) => { return { launchCollection } };
+const mapStateToProps = ({ launchCollection }) => ({ launchCollection });
 const mapDispatchToProps = dispatch => ({ dispatch });
 
 export default connect(
