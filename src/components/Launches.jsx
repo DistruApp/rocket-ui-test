@@ -20,13 +20,11 @@ const Launches = ({ launches }) => {
     <ul>
       {sortedLaunches.map((launch) => {
         return (
-          <li
-            onClick={() => handleClick(launch.id)}
-            key={launch.id}
-          >
+          <li key={launch.id}>
             <Launch
               launch={launch}
               active={launch.id === activeLaunchId}
+              onClick={() => handleClick(launch.id)}
             />
           </li>
         )
