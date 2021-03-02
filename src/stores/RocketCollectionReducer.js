@@ -17,11 +17,10 @@ const actionHandlers = {
   },
   [ACTIONS.RECEIVE_ROCKET]: ({ state, action }) => {
     const id = action.payload.rocketId;
-    const rocket = { ...action.payload.rocket, fetched: true }
 
     return {
       ...state,
-      rockets: { ...state.rockets, [id]: rocket }
+      rockets: { ...state.rockets, [id]: action.payload.rocket }
     }
   }
 };

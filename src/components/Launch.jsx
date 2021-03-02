@@ -15,7 +15,8 @@ const Launch = ({ launch, active, rocket, dispatch }) => {
     <div>
       <h2> { launch.name } </h2>
       <div> Flight Number: { launch.flight_number } </div>
-      { active && rocket && <DetailedRocket rocket={rocket} /> }
+      { active && rocket && rocket.fetching && 'Loading...' }
+      { active && rocket && !rocket.fetching && <DetailedRocket rocket={rocket} /> }
     </div>
   );
 }
