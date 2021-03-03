@@ -6,7 +6,7 @@ import { fetchRocket } from "../actions/Rockets";
 import { getRocket } from "../queries/Rockets";
 import DetailedRocket from "./DetailedRocket";
 
-export const Launch = ({ launch, active, rocket, dispatch, onClick }) => {
+export const LaunchInternal = ({ launch, active, rocket, dispatch, onClick }) => {
   const rocketId = launch.rocket;
   // Fetching in this component so that when fetch occurs, only this component
   // updates and not all the other launches
@@ -33,7 +33,7 @@ export const Launch = ({ launch, active, rocket, dispatch, onClick }) => {
     </div>
   );
 };
-Launch.propTypes = {
+LaunchInternal.propTypes = {
   launch: PropTypes.shape({
     flight_number: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
@@ -46,7 +46,7 @@ Launch.propTypes = {
   dispatch: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired
 };
-Launch.defaultProps = {
+LaunchInternal.defaultProps = {
   rocket: null
 };
 
@@ -59,4 +59,4 @@ const mapDispatchToProps = dispatch => ({ dispatch });
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Launch);
+)(LaunchInternal);

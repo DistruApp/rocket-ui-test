@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { render, fireEvent, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -14,9 +14,7 @@ describe('<LaunchesView />', () => {
       fetching: false,
       launches: []
     }
-    const store = createStore((state) => {
-      return { rocketCollection, launchCollection }
-    })
+    const store = createStore(() => ({ rocketCollection, launchCollection }))
 
     beforeEach(() => {
       render(
@@ -38,9 +36,7 @@ describe('<LaunchesView />', () => {
       fetching: true,
       launches: []
     }
-    const store = createStore((state) => {
-      return { rocketCollection, launchCollection }
-    })
+    const store = createStore(() => ({ rocketCollection, launchCollection }))
 
     beforeEach(() => {
       render(
@@ -74,9 +70,7 @@ describe('<LaunchesView />', () => {
       fetching: false,
       launches: [launch1, launch2]
     }
-    const store = createStore((state) => {
-      return { rocketCollection, launchCollection }
-    })
+    const store = createStore(() => ({ rocketCollection, launchCollection }))
 
     beforeEach(() => {
       render(

@@ -1,5 +1,4 @@
-import { fetchRocket } from '../Rockets'
-import { ACTIONS } from '../../actions/Rockets'
+import { fetchRocket, ACTIONS } from '../Rockets'
 import RocketService from '../../services/RocketService';
 
 jest.mock('../../services/RocketService')
@@ -17,8 +16,8 @@ describe('{ fetchRocket }', () => {
     RocketService.get.mockClear()
   })
 
-  it('dispatches 2 actions', () => {
-    return fetchRocket(dispatch, rocketId)
+  it('dispatches 2 actions', () => (
+    fetchRocket(dispatch, rocketId)
       .then(() => {
         expect.assertions(3)
         expect(dispatch.mock.calls.length).toBe(2)
@@ -36,5 +35,5 @@ describe('{ fetchRocket }', () => {
           }
         })
       })
-  })
+  ))
 })

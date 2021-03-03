@@ -1,5 +1,4 @@
-import { fetchLaunches } from '../Launches'
-import { ACTIONS } from '../../actions/Launches'
+import { fetchLaunches, ACTIONS } from '../Launches'
 import LaunchService from '../../services/LaunchService';
 
 jest.mock('../../services/LaunchService')
@@ -16,8 +15,8 @@ describe('{ fetchLaunches }', () => {
     LaunchService.getAll.mockClear()
   })
 
-  it('dispatches 2 actions', () => {
-    return fetchLaunches(dispatch)
+  it('dispatches 2 actions', () => (
+    fetchLaunches(dispatch)
       .then(() => {
         expect.assertions(3)
         expect(dispatch.mock.calls.length).toBe(2)
@@ -31,5 +30,5 @@ describe('{ fetchLaunches }', () => {
           }
         })
       })
-  })
+  ))
 })

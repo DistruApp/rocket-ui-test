@@ -3,7 +3,6 @@ import { ACTIONS } from '../../actions/Launches';
 
 describe('default', () => {
   const initialState = LaunchCollectionReducer(undefined, {})
-  const launchId = 'launch-id'
 
   describe('initial state', () => {
     it('has correct initial state', () => {

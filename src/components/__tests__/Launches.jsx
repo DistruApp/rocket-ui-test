@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { render, fireEvent, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -26,9 +26,7 @@ describe('<Launches />', () => {
     }
     const launches = [launch1, launch2]
     const launchCollection = { launches }
-    const store = createStore((state) => {
-      return { rocketCollection, launchCollection }
-    })
+    const store = createStore(() => ({ rocketCollection, launchCollection }))
 
     beforeEach(() => {
       render(
