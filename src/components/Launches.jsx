@@ -18,7 +18,7 @@ const Launches = ({ launches }) => {
   return (
     <ul>
       {sortedLaunches.map((launch) => (
-          <li key={launch.id}>
+          <li key={launch.id} data-testid='launch'>
             <Launch
               launch={launch}
               active={launch.id === activeLaunchId}

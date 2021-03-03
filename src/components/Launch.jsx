@@ -13,10 +13,11 @@ export const Launch = ({ launch, active, rocket, dispatch, onClick }) => {
   if (active && !rocket) fetchRocket(dispatch, rocketId);
 
   return (
-    <div>
+    <div data-testid={`launch-${launch.id}`}>
       <h2>
         <span
           style={{ color: '#1a0dab', cursor: 'pointer' }}
+          data-testid={`launch-click-${launch.id}`}
           onClick={() => onClick()}
           tabIndex="0"
           role="button"
