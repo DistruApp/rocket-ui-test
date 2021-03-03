@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 
 import MasterLayoutHoc from '../components/MasterLayoutHoc';
-import { shouldFetchLaunches, fetchLaunches } from "../actions/Launches";
+import { fetchLaunches } from "../actions/Launches";
+import { shouldFetchLaunches } from "../queries/Launches";
 import Launches from '../components/Launches';
 
 const LaunchesView = ({ dispatch, launchCollection }) => {
