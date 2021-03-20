@@ -2,26 +2,35 @@ import LaunchService from '../services/LaunchService';
 
 export const ACTIONS = {
   REQUEST_LAUNCHES: 'REQUEST_LAUNCHES',
-  RECEIVE_LAUNCHES: 'RECEIVE_LAUNCHES'
+  RECEIVE_LAUNCHES: 'RECEIVE_LAUNCHES',
+  RECEIVE_LAUNCHES_FAILURE: 'RECEIVE_LAUNCHES_FAILURE',
 };
 
 export const requestLaunches = () => ({
-  type: ACTIONS.REQUEST_LAUNCHES
+  type: ACTIONS.REQUEST_LAUNCHES,
 });
 
-const receiveLaunches = response => ({
+const receiveLaunches = (response) => ({
   type: ACTIONS.RECEIVE_LAUNCHES,
   payload: {
-    launches: response.data
-  }
+    launches: response.data,
+  },
 });
 
-export const fetchLaunches = dispatch => {
-  dispatch(requestLaunches());
-  return LaunchService.get().then(response => dispatch(receiveLaunches(response)));
-};
+const receiveLaunchesFailure = () => ({
+  type: ACTIONS.RECEIVE_LAUNCHES_FAILURE,
+});
 
-const shouldFetchLaunches = launchCollection => !launchCollection || !launchCollection.fetching;
+export function fetchLaunches() {
+  return async (dispatch) => {
+    dispatch(requestLaunches());
 
-export const fetchLaunchesIfNeeded = ({ dispatch, launchCollection }) =>
-  shouldFetchLaunches(launchCollection) && fetchLaunches(dispatch);
+    LaunchService.get()
+      .then((response) => {
+        dispatch(receiveLaunches(response));
+      })
+      .catch(() => {
+        dispatch(receiveLaunchesFailure());
+      });
+  };
+}

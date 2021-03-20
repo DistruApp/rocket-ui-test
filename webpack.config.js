@@ -1,4 +1,3 @@
-"use strict";
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -10,14 +9,13 @@ const DashboardPlugin = require('webpack-dashboard/plugin');
 //   path.resolve(__dirname, 'styles/abstracts/_variables.sass'),
 //   path.resolve(__dirname, 'styles/abstracts/_mixins.sass'),
 // ];
-const HOST = process.env.HOST || "127.0.0.1";
-const PORT = process.env.PORT || "7357";
-
+const HOST = process.env.HOST || '127.0.0.1';
+const PORT = process.env.PORT || '7357';
 
 module.exports = {
   entry: [
     // POLYFILL: Set up an ES6-ish environment
-    // 'babel-polyfill',  // The entire babel-polyfill
+    'babel-polyfill', // The entire babel-polyfill
     // Or pick es6 features needed (included into babel-polyfill)
     'core-js/fn/promise',
     'core-js/es6/object',
@@ -29,67 +27,67 @@ module.exports = {
   output: {
     publicPath: '/',
     path: path.join(__dirname, 'public'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     rules: [
-      { // handle images
+      {
+        // handle images
         test: /\.(png|svg|jpg|gif)$/,
         use: {
-          loader: "file-loader"
-        }
+          loader: 'file-loader',
+        },
       },
-      { // handles css in legacy app
+      {
+        // handles css in legacy app
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
+        use: ['style-loader', 'css-loader'],
       },
-      { // handle sass
+      {
+        // handle sass
         test: /\.sass$/,
         use: [
-          "style-loader",
-          "css-loader",
-          "sass-loader",
+          'style-loader',
+          'css-loader',
+          'sass-loader',
           // {
           //   loader: "sass-resources-loader",
           //   options: {
           //     resources: sassResourcesPaths
           //   }
           // }
-
-        ]
+        ],
       },
-      { // process index alone as application root
+      {
+        // process index alone as application root
         test: /\.html$/,
-        use: "html-loader"
+        use: 'html-loader',
       },
-      { // handles angular templates referenced in js
+      {
+        // handles angular templates referenced in js
         test: /\.json/,
-        include: path.resolve(__dirname, "fixtures/mocks"),
-        use: [
-          'file-loader'
-        ]
+        include: path.resolve(__dirname, 'fixtures/mocks'),
+        use: ['file-loader'],
       },
       {
         test: /\.(js|jsx)$/,
-        include: path.resolve(__dirname, "src"),
-        use: 'babel-loader'
-      }
-    ]
-  },  resolve: {
+        include: path.resolve(__dirname, 'src'),
+        use: 'babel-loader',
+      },
+    ],
+  },
+  resolve: {
     extensions: ['.js', '.jsx'],
     modules: [
-      path.join(__dirname, "src"),
-      path.join(__dirname, "node_modules"), // the old 'fallback' option (needed for npm link-ed packages)
+      path.join(__dirname, 'src'),
+      path.join(__dirname, 'node_modules'), // the old 'fallback' option (needed for npm link-ed packages)
     ],
     alias: {
-      "styles": path.resolve(__dirname, 'styles/'),
-    }
+      styles: path.resolve(__dirname, 'styles/'),
+    },
   },
   devServer: {
-    contentBase: "./public",
+    contentBase: './public',
     // do not print bundle build stats
     noInfo: true,
     // enable HMR
@@ -99,7 +97,7 @@ module.exports = {
     // serve index.html in place of 404 responses to allow HTML5 history
     historyApiFallback: true,
     port: PORT,
-    host: HOST
+    host: HOST,
   },
   performance: { hints: false },
   plugins: [
@@ -111,8 +109,8 @@ module.exports = {
       template: './src/template.html',
       files: {
         css: ['style.css'],
-        js: [ "bundle.js"],
-      }
+        js: ['bundle.js'],
+      },
     }),
-  ]
+  ],
 };
