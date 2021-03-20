@@ -1,12 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ConnectedView from './ConnectedView';
 import {fetchLaunches} from "../actions/Launches";
+import {fetchRocket} from "../actions/Rockets";
+
 import Launch from '../components/Launch';
 
-const LaunchesView = ({launchCollection, dispatch}) => {
+const LaunchesView = ({launchCollection, rocketCollection, dispatch}) => {
   useEffect(() => {
     dispatch(fetchLaunches());
   }, [dispatch]);
+
+  const [activeLaunch, setActiveLaunch] = useState(null);
+
+
+  const handleClick = (event, launchId, rocketId) => {
+    event.preventDefault();
+    if(launchId === activeLaunch) {
+      setActiveLaunch(null)
+    } else {
+      setActiveLaunch(launchId)
+      dispatch(fetchRocket(rocketId));
+    }
+  }
 
   const {launches, fetching, errors} = launchCollection
 
@@ -14,11 +29,18 @@ const LaunchesView = ({launchCollection, dispatch}) => {
     if (errors) return <div> STARLINK DOWN </div>;
     if (!launchCollection || fetching) return <div> LOADING </div>;
     if (launchCollection && !launches.length) return <div> NO DATA </div>;
-    return launches.map((launch) => <Launch key={launch.launch_id} launch={launch}/>)
+    return launches.map((launch) =>
+      <Launch
+        key={launch.launch_id}
+        launch={launch}
+        handleClick={handleClick}
+        activeLaunch={activeLaunch}
+        rocketCollection={rocketCollection}
+      />)
   }
   return(
     <div>
-        <h2> SpaceX launches </h2>
+        <h2> SpaceX launchess </h2>
         <ul>
         {renderLaunches()}
         </ul>

@@ -1,23 +1,22 @@
-import { ACTIONS } from '../actions/Launches';
+import { ACTIONS } from '../actions/Rockets';
 
 const initialState = {
-  launches: [],
-  activeLaunch: null,
+  rocket: {},
   fetching: false,
   errors: false,
 };
 
 const actionHandlers = {
-  [ACTIONS.REQUEST_LAUNCHES]: ({ state }) => ({
+  [ACTIONS.REQUEST_ROCKET]: ({ state }) => ({
     ...state,
     fetching: true,
   }),
-  [ACTIONS.RECEIVE_LAUNCHES]: ({ state, action }) => ({
+  [ACTIONS.RECEIVE_ROCKET]: ({ state, action }) => ({
     ...state,
     fetching: false,
-    launches: [...state.launches, ...action.payload.launches],
+    rocket: { ...state.rocket, ...action.payload.rocket },
   }),
-  [ACTIONS.RECEIVE_LAUNCHES_FAILURE]: ({ state }) => ({
+  [ACTIONS.RECEIVE_ROCKET_FAILURE]: ({ state }) => ({
     ...state,
     fetching: false,
     errors: true,
