@@ -4,10 +4,12 @@ import thunk from 'redux-thunk';
 import launchCollection from './LaunchCollectionReducer';
 import rocketCollection from './RocketReducer';
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   launchCollection,
   rocketCollection,
 });
+
+export const middlewares = [thunk];
 
 const store = createStore(
   rootReducer,

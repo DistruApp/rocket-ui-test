@@ -39,7 +39,7 @@ const LaunchesView = ({launchCollection, rocketCollection, dispatch}) => {
       />)
   }
   return(
-    <div>
+    <div data-test="launchesView">
         <h2> SpaceX launchess </h2>
         <ul>
         {renderLaunches()}
