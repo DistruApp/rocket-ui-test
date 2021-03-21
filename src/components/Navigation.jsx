@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Navigation = () => (
-  <ul>
-    <li><Link to="/launches">Launches</Link></li>
+  <ul data-test="headerComponent">
+    <li><Link to="/launches" data-test="launchesLink">Launches</Link></li>
   </ul>
 );
 
