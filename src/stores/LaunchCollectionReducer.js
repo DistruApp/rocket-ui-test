@@ -2,7 +2,6 @@ import { ACTIONS } from '../actions/Launches';
 
 const initialState = {
   launches: [],
-  activeLaunch: null,
   fetching: false,
   errors: false,
 };
