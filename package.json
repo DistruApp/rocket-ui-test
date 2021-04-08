@@ -79,6 +79,7 @@
   },
   "jest": {
     "verbose": true,
+    "testURL": "http://localhost/",
     "bail": true,
     "collectCoverage": true,
     "coverageDirectory": "coverage",
