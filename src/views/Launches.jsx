@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ConnectedView from './ConnectedView';
 import {fetchLaunchesIfNeeded} from "../actions/Launches";
-import Launch from '../components/Launch';
+import launch from '../components/Launch';
 
 class LaunchesView extends Component {
   componentDidMount() {
@@ -23,14 +23,13 @@ class LaunchesView extends Component {
     let launches = [];
 
     for (let i = 0; i < launchCollection.launches.length; i++) {
-      const launch = launchCollection.launches[i];
+      const launchInfo = launchCollection.launches[i];
 
       launches.push(
-        <Launch {...{
-          key: launch.launch_id,
-          launch
-        }} />
-
+        launch({...{
+          key: launchInfo.launch_id,
+          launchInfo
+        }})
       )
     }
 
