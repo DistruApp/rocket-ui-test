@@ -21,11 +21,8 @@ class LaunchesView extends Component {
       return <div> NO DATA </div>;
     }
 
-    let launches = [];
-
-    for (let i = 0; i < launchCollection.launches.length; i++) {
-      const launchInfo = launchCollection.launches[i];
-
+    const launches = [];
+    for (const launchInfo of launchCollection.launches) {
       launches.push(
         launch({...{
           key: launchInfo.launch_id,
