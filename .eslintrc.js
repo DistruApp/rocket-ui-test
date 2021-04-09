@@ -20,5 +20,12 @@ module.exports = {
     "spaced-comment": 0,
     "no-underscore-dangle": 0,
     "trailing-comma": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": 'webpack.config.js'
+      }
+    }
   }
 };
