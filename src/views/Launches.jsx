@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ConnectedView from './ConnectedView';
 import {fetchLaunchesIfNeeded} from "../actions/Launches";
-import Launch from '../components/Launch';
+import launch from '../components/Launch';
 
 class LaunchesView extends Component {
   componentDidMount() {
-    const { dispatch, launchesCollection } = this.props;
-    fetchLaunchesIfNeeded({ dispatch, launchesCollection });
+    const { dispatch, launchCollection } = this.props;
+    fetchLaunchesIfNeeded({ dispatch, launchCollection });
   }
 
   getContent() {
@@ -20,17 +21,13 @@ class LaunchesView extends Component {
       return <div> NO DATA </div>;
     }
 
-    let launches = [];
-
-    for (let i = 0; i < launchCollection.launches.length; i++) {
-      const launch = launchCollection.launches[i];
-
+    const launches = [];
+    for (const launchInfo of launchCollection.launches) {
       launches.push(
-        <Launch {...{
-          key: launch.launch_id,
-          launch
-        }} />
-
+        launch({...{
+          key: launchInfo.launch_id,
+          launchInfo
+        }})
       )
     }
 
@@ -45,6 +42,14 @@ class LaunchesView extends Component {
       </div>
     );
   }
+}
+
+LaunchesView.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  /* eslint-disable react/forbid-prop-types */
+  // TODO: It would be nice to be more specific and not disable this
+  // I could be more specific. It's the LaunchCollectionReducer state
+  launchCollection: PropTypes.object.isRequired
 }
 
 export default ConnectedView(LaunchesView, 'launches');

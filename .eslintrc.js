@@ -1,6 +1,7 @@
 module.exports = {
   "env": {
     "es6": true,
+    "browser": true,
     "commonjs": true,
     "jest": true
   },
@@ -19,6 +20,14 @@ module.exports = {
   "rules": {
     "spaced-comment": 0,
     "no-underscore-dangle": 0,
-    "trailing-comma": 0
+    "trailing-comma": 0,
+    "no-restricted-syntax": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": 'webpack.config.js'
+      }
+    }
   }
 };

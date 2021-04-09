@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
+/* eslint-disable camelcase */ // Because it appears we're stuck with it for the time being
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class Launch extends Component {
+const launch = ({mission_name, flight_number}) => (
+  <li>
+    <h2> { mission_name } </h2>
+    <div> Flight Number: { flight_number } </div>
+  </li>
+);
 
-  render() {
-
-    let launch = this.props.launch;
-
-    return (
-      <li>
-        <h2> { launch.mission_name } </h2>
-        <div> Flight Number: { launch.flight_number } </div>
-      </li>
-    );
-  }
+launch.propTypes = {
+  mission_name: PropTypes.string.isRequired,
+  flight_number: PropTypes.string.isRequired
 }
 
-export default Launch;
+export default launch;
