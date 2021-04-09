@@ -1,4 +1,5 @@
 import React from 'react';
+import PropType from 'prop-types';
 
 const Layout = ({pageName, menu, children}) => (
   <main className={`${pageName} layout`}>
@@ -11,5 +12,11 @@ const Layout = ({pageName, menu, children}) => (
     </section>
   </main>
 );
+
+Layout.propTypes = {
+  pageName: PropType.string.isRequired,
+  menu: PropType.element.isRequired,
+  children: PropType.element.isRequired
+}
 
 export default Layout;
