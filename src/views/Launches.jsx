@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ConnectedView from './ConnectedView';
 import {fetchLaunchesIfNeeded} from "../actions/Launches";
 import launch from '../components/Launch';
@@ -44,6 +45,14 @@ class LaunchesView extends Component {
       </div>
     );
   }
+}
+
+LaunchesView.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  /* eslint-disable react/forbid-prop-types */
+  // TODO: It would be nice to be more specific and not disable this
+  // I could be more specific. It's the LaunchCollectionReducer state
+  launchCollection: PropTypes.object.isRequired
 }
 
 export default ConnectedView(LaunchesView, 'launches');
