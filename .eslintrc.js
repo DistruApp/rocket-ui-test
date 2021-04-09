@@ -20,7 +20,8 @@ module.exports = {
   "rules": {
     "spaced-comment": 0,
     "no-underscore-dangle": 0,
-    "trailing-comma": 0
+    "trailing-comma": 0,
+    "no-restricted-syntax": 0
   },
   "settings": {
     "import/resolver": {
