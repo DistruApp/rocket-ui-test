@@ -3,10 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const launch = ({mission_name, flight_number}) => (
-  <li>
+  <div>
     <h2> { mission_name } </h2>
     <div> Flight Number: { flight_number } </div>
-  </li>
+  </div>
 );
 
 launch.propTypes = {
