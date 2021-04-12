@@ -1,6 +1,6 @@
 import { ACTIONS } from '../actions/Launches';
 
-const initialState = {
+export const initialState = {
   launches: [],
   fetching: false
 };
