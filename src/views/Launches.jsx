@@ -25,7 +25,7 @@ class LaunchesView extends Component {
     for (const launchInfo of launchCollection.launches) {
       launches.push(
         launch({...{
-          key: launchInfo.launch_id,
+          key: launchInfo._id,
           launchInfo
         }})
       )
