@@ -20,9 +20,9 @@ const hookForRocketInfo = (rocketId, setLoading) => {
   return rocketInfo;
 };
 
-const Rocket = ({rocket_id}) => {
+const Rocket = ({rocketId}) => {
   const [loading, setLoading] = useState(true);
-  const rocketInfo = hookForRocketInfo(rocket_id, setLoading);
+  const rocketInfo = hookForRocketInfo(rocketId, setLoading);
 
   const renderRocket = () => {
     if (loading) {
@@ -51,7 +51,7 @@ const Rocket = ({rocket_id}) => {
  };
 
 Rocket.propTypes = {
-  rocket_id: PropTypes.string.isRequired,
+  rocketId: PropTypes.string.isRequired,
 }
 
 export default Rocket;
