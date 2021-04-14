@@ -23,6 +23,7 @@ const hookForRocketInfo = (rocketId, setLoading) => {
 const Rocket = ({rocketId}) => {
   const [loading, setLoading] = useState(true);
   const rocketInfo = hookForRocketInfo(rocketId, setLoading);
+  const currencyFormatter = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'});
 
   const renderRocket = () => {
     if (loading) {
@@ -34,12 +35,32 @@ const Rocket = ({rocketId}) => {
     }
 
     return (
-      <div>
-        <h2> { rocketInfo.rocket_name } </h2>
-        <div> Rocked ID: { rocketInfo.rocket_id }</div>
-        <div> Cost per Launch: { rocketInfo.cost_per_launch }</div>
-        <div> Description: { rocketInfo.description }</div>
-      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Rocket Info</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Name</td>
+            <td>{ rocketInfo.rocket_name }</td>
+          </tr>
+          <tr>
+            <td>ID</td>
+            <td>{ rocketInfo.rocket_id }</td>
+          </tr>
+          <tr>
+            <td>Cost Per Launch</td>
+            <td>{ currencyFormatter.format(rocketInfo.cost_per_launch) }</td>
+          </tr>
+          <tr>
+            <td>Description</td>
+            <td>{ rocketInfo.description }</td>
+          </tr>
+        </tbody>
+
+      </table>
     );
   };
 
