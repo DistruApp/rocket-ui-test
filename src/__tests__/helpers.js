@@ -355,3 +355,5 @@ export const exampleRocket = {
 }
 
 export const exampleRocketId = exampleRocket.rocket_id
+
+export const runAllPromises = () => new Promise(setImmediate);

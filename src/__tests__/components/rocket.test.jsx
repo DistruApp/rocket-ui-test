@@ -3,9 +3,8 @@ import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import axios from 'axios';
 import Rocket from '../../components/Rocket';
-import { exampleRocket, exampleRocketId } from '../helpers';
+import { exampleRocket, exampleRocketId, runAllPromises } from '../helpers';
 
-const runAllPromises = () => new Promise(setImmediate);
 jest.mock('axios');
 
 configure({ adapter: new Adapter() });
