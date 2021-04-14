@@ -4,11 +4,10 @@ import Adapter from 'enzyme-adapter-react-16';
 import configureMockStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import Routes from '../routes';
-import { initialState } from '../stores/LaunchCollectionReducer';
 
 configure({ adapter: new Adapter() });
 const mockStore = configureMockStore([])
-const appStore = mockStore({launchCollection: initialState})
+const appStore = mockStore({})
 
 describe('app', () => {
   it('renders without crashing', () => {
