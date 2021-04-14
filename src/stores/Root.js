@@ -1,9 +1,6 @@
 import { createStore, combineReducers } from 'redux';
-import launchCollection from './LaunchCollectionReducer';
 
-const rootReducer = combineReducers({
-  launchCollection
-});
+const rootReducer = combineReducers({});
 
 const store = createStore(rootReducer);
 
