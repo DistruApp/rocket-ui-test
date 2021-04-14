@@ -5,7 +5,7 @@ import Roc from './Rocket';
 
 const Launch = ({mission_name, flight_number, rocket, showRocket, showHideThisRocket}) => {
   const showHideRocketButton = () => (
-    <button onClick={() => showHideThisRocket()}>
+    <button type="button" onClick={() => showHideThisRocket()}>
       { showRocket ? '-' : '+'}
     </button>
   );
@@ -22,7 +22,7 @@ Launch.propTypes = {
   mission_name: PropTypes.string.isRequired,
   flight_number: PropTypes.number.isRequired,
   showRocket: PropTypes.bool.isRequired,
-  rocket: PropTypes.object.isRequired,
+  rocket: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   showHideThisRocket: PropTypes.func.isRequired
 }
 
