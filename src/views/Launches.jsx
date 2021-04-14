@@ -22,8 +22,18 @@ const hookForLaunchesData = (setLoading) => {
 
 const LaunchesView = () => {
   const [loading, setLoading] = useState(false);
+  const [selectedLaunch, setSelectedLaunch] = useState(null);
   const launchCollection = hookForLaunchesData(setLoading);
 
+  const selectLaunchButton = (launchId) => {
+    const setTo = (selectedLaunch === launchId ? null : launchId);
+    return (
+      <button onClick={() => setSelectedLaunch(setTo)}>
+        { setTo === null ? '-' : '+'}
+      </button>
+    );
+  };
+  
 
   const generateLaunchesList = () => {
     if (!launchCollection || loading) {
@@ -36,13 +46,15 @@ const LaunchesView = () => {
 
     const launches = [];
     for (const launchInfo of launchCollection) {
+      const launchParams = {showRocket: selectedLaunch === launchInfo._id, ...launchInfo}
       launches.push(
-        <li key={launchInfo._id}>
-          <Launch {...launchInfo} />
-        </li>
+        <div key={launchInfo._id}>
+          {selectLaunchButton(launchInfo._id)}
+          <Launch {...launchParams} />
+        </div>
       )
     }
-    return <ul>{launches}</ul>;
+    return launches;
   }
 
   return(
