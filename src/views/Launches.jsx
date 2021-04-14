@@ -22,9 +22,14 @@ const hookForLaunchesData = (setLoading) => {
 
 const LaunchesView = () => {
   const [loading, setLoading] = useState(false);
+  const [selectedLaunch, setSelectedLaunch] = useState(null);
   const launchCollection = hookForLaunchesData(setLoading);
 
-
+  const handleSelectLaunch = (launchId) => {
+    const setTo = (launchId === selectedLaunch ? null : launchId);
+    setSelectedLaunch(setTo);
+  }
+  
   const generateLaunchesList = () => {
     if (!launchCollection || loading) {
       return <div> LOADING </div>;
@@ -36,13 +41,18 @@ const LaunchesView = () => {
 
     const launches = [];
     for (const launchInfo of launchCollection) {
+      const launchParams = {
+        showRocket: selectedLaunch === launchInfo._id,
+        showHideThisRocket: () => handleSelectLaunch(launchInfo._id),
+        ...launchInfo
+      }
       launches.push(
-        <li key={launchInfo._id}>
-          <Launch {...launchInfo} />
-        </li>
+        <div key={launchInfo._id}>
+          <Launch {...launchParams} />
+        </div>
       )
     }
-    return <ul>{launches}</ul>;
+    return launches;
   }
 
   return(
