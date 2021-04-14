@@ -1,35 +1,44 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import ConnectedView from './ConnectedView';
-import { fetchLaunchesIfNeeded } from "../actions/Launches";
-import launch from '../components/Launch';
+import Launch from '../components/Launch';
+import { fetchLaunches } from '../http';
 
-const launchesView = ({ dispatch, launchCollection }) => {
+const hookForLaunchesData = (setLoading) => {
+  // where we store the data after it's gotten, before returning it
+  const [ launchesInfo, setLaunchesInfo ] = useState(null);
 
-  // This is essentially is the same as componentDidMount
-  // When the function component runs for the first time this
-  // will trigger. The second argument is tracked for the life
-  // of the functional component. The use effect only triggers
-  // when the second argument changes. Since we're passing a
-  // constant value, it'll only fire on the first run
+  const fetchLaunchesData = async () => fetchLaunches();
+
   useEffect(() => {
-    fetchLaunchesIfNeeded({ dispatch, launchCollection});
-  }, [])
+    setLoading(true);
+    fetchLaunchesData().then(data => {
+      setLaunchesInfo(data);
+      setLoading(false);
+    });
+  }, []);
+
+  return launchesInfo;
+}
+
+const LaunchesView = () => {
+  const [loading, setLoading] = useState(false);
+  const launchCollection = hookForLaunchesData(setLoading);
+
 
   const generateLaunchesList = () => {
-    if (!launchCollection || launchCollection.fetching) {
+    if (!launchCollection || loading) {
       return <div> LOADING </div>;
     }
 
-    if (!launchCollection.launches.length) {
+    if (!launchCollection.length) {
       return <div> NO DATA </div>;
     }
 
     const launches = [];
-    for (const launchInfo of launchCollection.launches) {
+    for (const launchInfo of launchCollection) {
       launches.push(
         <li key={launchInfo._id}>
-          {launch(launchInfo)}
+          <Launch {...launchInfo} />
         </li>
       )
     }
@@ -44,12 +53,4 @@ const launchesView = ({ dispatch, launchCollection }) => {
   );
 };
 
-launchesView.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  /* eslint-disable react/forbid-prop-types */
-  // TODO: It would be nice to be more specific and not disable this
-  // I could be more specific. It's the LaunchCollectionReducer state
-  launchCollection: PropTypes.object.isRequired
-}
-
-export default ConnectedView(launchesView, 'launches');
+export default ConnectedView(LaunchesView, 'launches');
