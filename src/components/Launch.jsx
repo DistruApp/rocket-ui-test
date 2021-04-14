@@ -12,8 +12,7 @@ const Launch = ({mission_name, flight_number, rocket, showRocket, showHideThisRo
 
   return (
     <div>
-      <h2> {showHideRocketButton()} { mission_name } </h2>
-      <div> Flight Number: { flight_number } </div>
+      <h2> {showHideRocketButton()} Flight #{ flight_number }: { mission_name } </h2>
       { showRocket ? <Roc rocketId={rocket.rocket_id} /> : null }
     </div>
   );
