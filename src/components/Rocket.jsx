@@ -3,12 +3,18 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { fetchRocket } from '../http';
 
+// custom hook for retrieving the rocket info
 const hookForRocketInfo = (rocketId, setLoading) => {
   // where we store the data after it's gotten, before returning it
   const [ rocketInfo, setRocketInfo ] = useState({});
 
+  // the actual fetch of the rocket data
   const fetchRocketData = async () => fetchRocket(rocketId);;
 
+  // This use effect is only triggered on the first load because we
+  // supplied a static variable, `[]`, as the second parameter. This
+  // useEffect also controls determining whether or not the Rocket
+  // component is in the loading state or not
   useEffect(() => {
     setLoading(true);
     fetchRocketData().then(data => {
@@ -21,8 +27,12 @@ const hookForRocketInfo = (rocketId, setLoading) => {
 };
 
 const Rocket = ({rocketId}) => {
+  // Track whether or not we're  loading data
   const [loading, setLoading] = useState(true);
+  // We have to call our custom hook to get the rocket info
   const rocketInfo = hookForRocketInfo(rocketId, setLoading);
+
+  // Local function for converting a number into USD currency
   const currencyFormatter = new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'});
 
   const renderRocket = () => {
