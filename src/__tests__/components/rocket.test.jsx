@@ -25,4 +25,16 @@ describe('rocket', () => {
     wrapper.update();
     expect(wrapper.find('table')).toHaveLength(1);
   });
+
+  it('doesn\'t crash when api call fails', async() => {
+    axios.get.mockResolvedValueOnce({
+      status: 500,
+      statusText: "cat pushed the server over"
+    });
+    
+    const wrapper = mount(<Rocket {...{rocketId: exampleRocketId}} />);
+    await runAllPromises();
+    wrapper.update();
+    expect(wrapper.find('span').text()).toEqual('Error getting data, try again later');
+  });
 });

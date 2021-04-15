@@ -40,7 +40,7 @@ const Rocket = ({rocketId}) => {
       return <span>Loading...</span>;
     }
     
-    if (!loading && rocketInfo.length === 0) {
+    if (!loading && Object.keys(rocketInfo).length === 0) {
       return <span>Error getting data, try again later</span>;
     }
 

@@ -53,4 +53,23 @@ describe('LaunchesView', () => {
     wrapper.update();
     expect(wrapper.find('Launch')).toHaveLength(exampleLaunches.length);
   });
+
+  it('doesn\'t crash when api call fails', async () => {
+    axios.get.mockResolvedValueOnce({
+      status: 500,
+      statusText: 'cats kicked the server'
+    });
+
+    const wrapper = mount(
+      <Provider store={appStore}>
+        <Router>
+          <LaunchesView />
+        </Router>
+      </Provider>
+    );
+    await runAllPromises();
+    wrapper.update();
+    expect(wrapper.find('LaunchesView')).toHaveLength(1);
+    expect(wrapper.find('Launch')).toHaveLength(0);
+  });
 });

@@ -9,9 +9,13 @@ export const launchesUrl = `${SERVICES_URL}/launches`;
 export const rocketUrl = `${SERVICES_URL}/rockets`
 
 // Used to throw errors from non-200 responses when using fetch.
-function checkStatus(response) {
+const checkStatus = (response, defaultValue) => {
   if (response.status >= 200 && response.status < 300) {
     return response;
+  }
+  
+  if (defaultValue !== undefined) {
+    return {data: defaultValue};
   }
 
   const error = new Error(response.statusText);
@@ -19,11 +23,13 @@ function checkStatus(response) {
   throw error;
 }
 
-const fetchJSON = (route) => (
+// Default value will be safe returned when there is an issue
+// with the API call, isntead of throwing an error
+const fetchJSON = (route, defaultValue = undefined) => (
   axios.get(route)
-    .then(checkStatus)
+    .then(response => checkStatus(response, defaultValue))
     .then(response => response.data)
 );
 
-export const fetchLaunches = (withId = true) => fetchJSON(`${launchesUrl}?id=${withId}`);
-export const fetchRocket = (rocketId) => fetchJSON(`${rocketUrl}/${rocketId}`);
+export const fetchLaunches = (withId = true) => fetchJSON(`${launchesUrl}?id=${withId}`, []);
+export const fetchRocket = (rocketId) => fetchJSON(`${rocketUrl}/${rocketId}`, {});
