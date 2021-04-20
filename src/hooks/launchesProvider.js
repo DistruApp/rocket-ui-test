@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react'
 import LaunchService from "../services/LaunchService";
 const LaunchesContext = React.createContext();
 
+const sortLaunchesByDate = launches => launches.sort((a, b) => new Date(b.launch_date_local) - new Date(a.launch_date_local))
+
 export const LaunchesProvider = ({children}) => {
     const value = {};
     return <LaunchesContext.Provider value={value}>{children}</LaunchesContext.Provider>
@@ -12,11 +14,12 @@ export const useLaunches = () => {
     const [isfetchingLaunches, setIsFetchingLaunches] = useState(false);
 
     useEffect( () => {
-        const getContent = async () => {
+        console.log("adfa")
+        const getPastLaunches = async () => {
             setIsFetchingLaunches(true);
             try{
-                const {data} = await LaunchService.get();
-                setLaunches(data)
+                const {data} = await LaunchService.getLaunches();
+                setLaunches(sortLaunchesByDate(data))
             } catch(e){
                 console.log(e);
             } finally {
@@ -24,7 +27,7 @@ export const useLaunches = () => {
             }
         }
 
-        getContent();
+        getPastLaunches();
     }, []);
 
     return {
@@ -32,3 +35,56 @@ export const useLaunches = () => {
         isfetchingLaunches
     }
 };
+
+export const useUpcomingLaunches = () => {
+    const [upcomingLaunches, setLaunches] = useState([]);
+    const [isfetchingUpComingLaunches, setIsfetchingUpComingLaunches] = useState(false);
+
+    useEffect( () => {
+        const getUpcomingLaunches = async () => {
+            setIsfetchingUpComingLaunches(true);
+            try{
+                const {data} = await LaunchService.getUpcomingLaunches();
+                setLaunches(sortLaunchesByDate(data))
+            } catch(e){
+                console.log(e);
+            } finally {
+                setIsfetchingUpComingLaunches(false);
+            }
+        }
+
+        getUpcomingLaunches();
+    }, []);
+
+    return {
+        upcomingLaunches,
+        isfetchingUpComingLaunches
+    }
+};
+
+export const usePastLaunches = () => {
+    const [pastLaunches, setLaunches] = useState([]);
+    const [isfetchingPastLaunches, setIsfetchingPastLaunches] = useState(false);
+
+    useEffect( () => {
+        const getUpcomingLaunches = async () => {
+            setIsfetchingPastLaunches(true);
+            try{
+                const {data} = await LaunchService.getPastLaunches();
+                setLaunches(sortLaunchesByDate(data))
+            } catch(e){
+                console.log(e);
+            } finally {
+                setIsfetchingPastLaunches(false);
+            }
+        }
+
+        getUpcomingLaunches();
+    }, []);
+
+    return {
+        pastLaunches,
+        isfetchingPastLaunches
+    }
+};
+
