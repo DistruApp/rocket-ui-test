@@ -4,14 +4,23 @@ import {
   Route
 } from 'react-router-dom';
 import Launches from './views/Launches';
+import Layout from "./views/Layout";
+import Navigation from './components/Navigation';
+const menu = Navigation();
 
-const Routes = () => (
+const Routes = () => {
+
+const layoutProps = {
+    menu
+};
+
+return (
   <Router>
-    <div>
-      <Route exact path="/" component={Launches}/>
-      <Route path="/Launches" component={Launches}/>
-    </div>
+      <Layout {...layoutProps}>
+          <Route exact path="/" component={Launches}/>
+          <Route path="/launches" component={Launches}/>
+      </Layout>
   </Router>
-);
+)};
 
 export default Routes;

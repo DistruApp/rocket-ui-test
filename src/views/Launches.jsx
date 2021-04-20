@@ -1,50 +1,27 @@
-import React, { Component } from 'react';
-import ConnectedView from './ConnectedView';
-import {fetchLaunchesIfNeeded} from "../actions/Launches";
+import React, { useState, useEffect } from 'react';
 import Launch from '../components/Launch';
+import {useLaunches} from "../hooks/launchesProvider";
 
-class LaunchesView extends Component {
-  componentDidMount() {
-    const { dispatch, launchesCollection } = this.props;
-    fetchLaunchesIfNeeded({ dispatch, launchesCollection });
+const LaunchesView = () => {
+  const {launches, isfetchingLaunches} = useLaunches();
+
+  if (isfetchingLaunches) {
+    return <div> LOADING </div>;
   }
 
-  getContent() {
-    const { launchCollection } = this.props;
-
-    if (!launchCollection || launchCollection.fetching) {
-      return <div> LOADING </div>;
-    }
-
-    if (!launchCollection.launches.length) {
-      return <div> NO DATA </div>;
-    }
-
-    let launches = [];
-
-    for (let i = 0; i < launchCollection.launches.length; i++) {
-      const launch = launchCollection.launches[i];
-
-      launches.push(
-        <Launch {...{
-          key: launch.launch_id,
-          launch
-        }} />
-
-      )
-    }
-
-    return <ul>{launches}</ul>;
+  if (!launches.length) {
+    return <div> NO DATA </div>;
   }
 
-  render() {
-    return (
+  return (
       <div>
         <h2> SpaceX launches </h2>
-        {this.getContent()}
+        <ul>{launches.map( launch => <Launch {...{
+          key: launch.mission_name,
+          launch
+        }} />)}</ul>
       </div>
-    );
-  }
+  )
 }
 
-export default ConnectedView(LaunchesView, 'launches');
+export default LaunchesView;

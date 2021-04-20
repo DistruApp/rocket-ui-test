@@ -1,8 +1,6 @@
 import React from 'react';
 
-const Layout = ({
-                  pageName, menu, children
-                }) => {
+const Layout = ({ pageName, menu, children }) => {
   return (
     <main className={`${pageName} layout`}>
       <nav>
