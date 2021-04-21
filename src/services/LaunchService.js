@@ -8,6 +8,7 @@ const launchService = {
   getLaunches: () => api.get(`${SERVICES_URL}/launches`),
   getUpcomingLaunches: () => api.get(`${SERVICES_URL}/launches/upcoming`),
   getPastLaunches: () => api.get(`${SERVICES_URL}/launches/past`),
+  getLaunchByFlightNumber: flightNumber => api.get(`${SERVICES_URL}/launches/${flightNumber}`)
 };
 
 export default launchService;

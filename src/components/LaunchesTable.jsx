@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -9,6 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import moment from "moment";
+import { LaunchesContext } from "../hooks/launchesProvider";
 
 const columns = [
     { id: 'flight_number', label: 'Flight Number', maxWidth: 170 },
@@ -51,6 +52,7 @@ export default function LanchesTable({launches}) {
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(50);
+    const { setShowModal, setLaunchToView } = useContext(LaunchesContext);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -62,7 +64,8 @@ export default function LanchesTable({launches}) {
     };
 
     const handleRowClick = row => {
-        console.log(row)
+        setShowModal(true);
+        setLaunchToView(row);
     }
 
     return (
