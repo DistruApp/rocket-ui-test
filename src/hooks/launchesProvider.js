@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import LaunchService from "../services/LaunchService";
 
-export const LaunchesContext = React.createContext();
-
 const sortLaunchesByDate = launches => launches.sort((a, b) => new Date(b.launch_date_local) - new Date(a.launch_date_local))
+
+export const LaunchesContext = React.createContext();
 
 export const LaunchesProvider = ({children}) => {
     const [showModal, setShowModal] = useState(false);

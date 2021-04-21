@@ -14,7 +14,7 @@ const formatDate = dateString => {
 
 export const SingleLaunchModal = ({ showModal, setShowModal, launch }) => {
     const modalRef = useRef();
-    const [launchDetails, setLaunchDetails] = useState();
+    const [launchDetails, setLaunchDetails] = useState(undefined);
 
     const animation = useSpring({
         config: {
@@ -24,9 +24,9 @@ export const SingleLaunchModal = ({ showModal, setShowModal, launch }) => {
         transform: showModal ? `translateY(0%) translateX(10%)` : `translateX(-100%)`
     });
 
-    const closeModal = (e, shouldClose) => {
+    const closeModal = () => {
         setShowModal(false);
-        setLaunchDetails();
+        setLaunchDetails(undefined);
     };
 
     const keyPress = useCallback(
@@ -38,18 +38,13 @@ export const SingleLaunchModal = ({ showModal, setShowModal, launch }) => {
         [setShowModal, showModal]
     );
 
-    // const [isfetchingLaunches, setIsFetchingLaunches] = useState(false);
-
     useEffect( () => {
         const getLaunchByFlightNumber = async () => {
-            // setIsFetchingLaunches(true);
             try{
                 const {data} = await LaunchService.getLaunchByFlightNumber(launch.flight_number);
                 setLaunchDetails(data)
             } catch(e){
                 console.log(e);
-            } finally {
-                // setIsFetchingLaunches(false);
             }
         }
 
@@ -99,7 +94,7 @@ export const SingleLaunchModal = ({ showModal, setShowModal, launch }) => {
                             <MdClose className="close-modal-button"
                                 color={"white"}
                                 aria-label='Close modal'
-                                onClick={e => closeModal(e, true)}
+                                onClick={e => closeModal(true)}
                             />
                         </div>
                     </animated.div>

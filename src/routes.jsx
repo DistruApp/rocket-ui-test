@@ -7,8 +7,6 @@ import AllLaunchesView from './views/AllLaunches';
 import Layout from "./views/Layout";
 import UpcomingLaunchesView from "./views/UpcoingLaunches";
 import PastLaunches from"./views/PastLaunches";
-import {SingleLaunchModal} from "./components/SingleLaunchModal";
-import {LaunchesContext} from "./hooks/launchesProvider";
 
 const Routes = () => {
     return(
