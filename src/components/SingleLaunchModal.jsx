@@ -15,7 +15,9 @@ const formatDate = dateString => {
 export const SingleLaunchModal = ({ showModal, setShowModal, launch }) => {
     const modalRef = useRef();
     const [launchDetails, setLaunchDetails] = useState(undefined);
-
+    const [rocketDetails, setRocketDetails] = useState(undefined);
+    const [isFetching, setIsFetching] = useState(false);
+    const hasImages = launchDetails?.links.flickr_images.length > 0;
     const animation = useSpring({
         config: {
             duration: 250
@@ -40,11 +42,16 @@ export const SingleLaunchModal = ({ showModal, setShowModal, launch }) => {
 
     useEffect( () => {
         const getLaunchByFlightNumber = async () => {
+            setIsFetching(true);
             try{
-                const {data} = await LaunchService.getLaunchByFlightNumber(launch.flight_number);
-                setLaunchDetails(data)
+                let {data: launchData} = await LaunchService.getLaunchByFlightNumber(launch.flight_number);
+                let {data: rocketDetails} =  await LaunchService.getRocketById(launchData?.rocket.rocket_id);
+                setLaunchDetails(launchData);
+                setRocketDetails(rocketDetails);
             } catch(e){
                 console.log(e);
+            } finally {
+                setIsFetching(false);
             }
         }
 
@@ -62,20 +69,26 @@ export const SingleLaunchModal = ({ showModal, setShowModal, launch }) => {
         [keyPress]
     );
 
+    if(isFetching){
+        return (
+            <div>LOADING...</div>
+        )
+    }
+
     return (
         <React.Fragment>
             {showModal ? (
                 <div className="background" ref={modalRef}>
                     <animated.div style={animation}>
-                        <div className="modal-wrapper">
-                            {launchDetails?.links.flickr_images.length > 0 && (
-                                <Carousel dynamicHeight={false}>
+                        <div className={`modal-wrapper ${!hasImages && "no-image"}`}>
+                            {hasImages && (
+                                <Carousel width={700}>
                                     {launchDetails?.links.flickr_images.map( (src, index) => {
                                         console.log({src})
                                             return(
                                                 <div style={{height: 600}}>
                                                     <img src={src} />
-                                                    <p className="legend">`Image ${index}`</p>
+                                                    <p className="legend">Image {index+1}</p>
                                                 </div>
                                             )
 
@@ -90,6 +103,8 @@ export const SingleLaunchModal = ({ showModal, setShowModal, launch }) => {
                                     </div>
                                 </div>
                                 <p>{launchDetails?.details}</p>
+                                <br></br>
+                                <h3>{`Cost Per Launch: $${rocketDetails?.cost_per_launch}`}</h3>
                             </div>
                             <MdClose className="close-modal-button"
                                 color={"white"}
