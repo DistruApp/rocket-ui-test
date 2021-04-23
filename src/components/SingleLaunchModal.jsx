@@ -1,16 +1,13 @@
-
 import React, {useRef, useEffect, useCallback, useState} from 'react';
 import { useSpring, animated } from 'react-spring';
 import { MdClose } from 'react-icons/md';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import "../../styles/pageStyles/singleFlightModal.sass";
-import LaunchService from "../services/LaunchService";
 import moment from "moment";
+import LaunchService from "../services/LaunchService";
 
-const formatDate = dateString => {
-    return moment(new Date(dateString)).format("h:mma on LL");
-}
+const formatDate = dateString => moment(new Date(dateString)).format("h:mma on LL")
 
 export const SingleLaunchModal = ({ showModal, setShowModal, launch }) => {
     const modalRef = useRef();
@@ -44,10 +41,10 @@ export const SingleLaunchModal = ({ showModal, setShowModal, launch }) => {
         const getLaunchByFlightNumber = async () => {
             setIsFetching(true);
             try{
-                let {data: launchData} = await LaunchService.getLaunchByFlightNumber(launch.flight_number);
-                let {data: rocketDetails} =  await LaunchService.getRocketById(launchData?.rocket.rocket_id);
+                const {data: launchData} = await LaunchService.getLaunchByFlightNumber(launch.flight_number);
+                const {data: rocketData} =  await LaunchService.getRocketById(launchData?.rocket.rocket_id);
                 setLaunchDetails(launchData);
-                setRocketDetails(rocketDetails);
+                setRocketDetails(rocketData);
             } catch(e){
                 console.log(e);
             } finally {
@@ -103,11 +100,11 @@ export const SingleLaunchModal = ({ showModal, setShowModal, launch }) => {
                                     </div>
                                 </div>
                                 <p>{launchDetails?.details}</p>
-                                <br></br>
+                                <br />
                                 <h3>{`Cost Per Launch: $${rocketDetails?.cost_per_launch}`}</h3>
                             </div>
                             <MdClose className="close-modal-button"
-                                color={"white"}
+                                color="white"
                                 aria-label='Close modal'
                                 onClick={e => closeModal(true)}
                             />

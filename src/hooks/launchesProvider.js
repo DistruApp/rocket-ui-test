@@ -6,13 +6,16 @@ const sortLaunchesByDate = launches => launches.sort((a, b) => new Date(b.launch
 export const LaunchesContext = React.createContext();
 
 export const LaunchesProvider = ({children}) => {
-    const [showModal, setShowModal] = useState(false);
+    const [showSingleLaunch, setShowSingleLaunch] = useState(false);
     const [launchToView, setLaunchToView] = useState(null);
+    const [usePanel, setUsePanel] = useState(true);
     const value = {
-        showModal,
-        setShowModal,
+        showSingleLaunch,
+        setShowSingleLaunch,
         launchToView,
-        setLaunchToView
+        setLaunchToView,
+        usePanel,
+        setUsePanel
     };
     return <LaunchesContext.Provider value={value}>
         {children}

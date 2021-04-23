@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Route
@@ -8,8 +8,7 @@ import Layout from "./views/Layout";
 import UpcomingLaunchesView from "./views/UpcoingLaunches";
 import PastLaunches from"./views/PastLaunches";
 
-const Routes = () => {
-    return(
+const Routes = () => (
         <Router>
             <div>
                 <Layout>
@@ -19,7 +18,6 @@ const Routes = () => {
                 </Layout>
             </div>
         </Router>
-    );
-}
+    )
 
 export default Routes;

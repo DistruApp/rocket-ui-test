@@ -29,15 +29,13 @@ const columns = [
     },
 ];
 
-const mapLaunchDataToTable = launches => {
-    return launches.map( launch => ({
+const mapLaunchDataToTable = launches => launches.map( launch => ({
         flight_number: launch.flight_number,
         mission_name: launch.mission_name,
         launch_date_local: launch.launch_date_local,
         launch_site: launch.launch_site.site_name_long,
         rocket_name: launch.rocket.rocket_name
     }))
-}
 
 const useStyles = makeStyles({
     root: {
@@ -52,7 +50,7 @@ export default function LanchesTable({launches}) {
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(50);
-    const { setShowModal, setLaunchToView } = useContext(LaunchesContext);
+    const { setShowSingleLaunch, setLaunchToView } = useContext(LaunchesContext);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -64,7 +62,7 @@ export default function LanchesTable({launches}) {
     };
 
     const handleRowClick = row => {
-        setShowModal(true);
+        setShowSingleLaunch(true);
         setLaunchToView(row);
     }
 
@@ -86,8 +84,7 @@ export default function LanchesTable({launches}) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {mapLaunchDataToTable(launches).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                            return (
+                        {mapLaunchDataToTable(launches).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
                                 <TableRow
                                     hover
                                     role="checkbox"
@@ -107,8 +104,7 @@ export default function LanchesTable({launches}) {
                                         );
                                     })}
                                 </TableRow>
-                            );
-                        })}
+                            ))}
                     </TableBody>
                 </Table>
             </TableContainer>
