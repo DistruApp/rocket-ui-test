@@ -43,7 +43,7 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^22.0.4",
-    "babel-loader": "^7.1.5",
+    "babel-loader": "^8.2.2",
     "babel-preset-env": "^1.6.1",
     "css-loader": "^0.28.11",
     "enzyme": "^3.11.0",
