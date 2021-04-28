@@ -4,6 +4,13 @@ import {fetchLaunchesIfNeeded} from "../actions/Launches";
 import Launch from '../components/Launch';
 
 class LaunchesView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedFlightNumber: null,
+    }
+  }
+
   componentDidMount() {
     const { dispatch, launchesCollection } = this.props;
     fetchLaunchesIfNeeded({ dispatch, launchesCollection });
@@ -11,6 +18,7 @@ class LaunchesView extends Component {
 
   getContent() {
     const { launchCollection } = this.props;
+    const { selectedFlightNumber } = this.state;
 
     if (!launchCollection || launchCollection.fetching) {
       return <div> LOADING </div>;
@@ -27,14 +35,21 @@ class LaunchesView extends Component {
 
       launches.push(
         <Launch {...{
-          key: launch.launch_id,
-          launch
+          key: launch.flight_number,
+          launch,
+          onClickHandler: this.setSelectedFlightNumber,
+          selected: launch.flight_number === selectedFlightNumber
         }} />
 
       )
     }
 
     return <ul>{launches}</ul>;
+  }
+
+  setSelectedFlightNumber = (flightNumber = null) => {
+    const { selectedFlightNumber } = this.state;
+    this.setState({ selectedFlightNumber: selectedFlightNumber !== flightNumber ? flightNumber : null});
   }
 
   render() {
