@@ -42,7 +42,7 @@ You should be able to easily find the information there make the call and extrac
 * Fork and clone the project:
 
 ```
-git clone https://github.com/seamusmalone/ui-test-base
+git clone https://github.com/DistruApp/rocket-ui-test.git
 ```
 
 * Then install the dependencies:

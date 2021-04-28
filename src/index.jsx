@@ -12,11 +12,13 @@ import store from "./stores/Root.js";
 
 const renderApp = (Component) => {
   ReactDOM.render(
-    <Provider store={store}>
-      <AppContainer>
-        <Component/>
-      </AppContainer>
-    </Provider>,
+    <React.StrictMode>
+      <Provider store={store}>
+        <AppContainer>
+          <Component/>
+        </AppContainer>
+      </Provider>
+    </React.StrictMode>,
     document.getElementById('app')
   );
 };
