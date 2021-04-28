@@ -8,7 +8,7 @@ class Launch extends Component {
 
     return (
       <li>
-        <h2> { launch.mission_name } </h2>
+        <h2> {launch.name} </h2>
         <div> Flight Number: { launch.flight_number } </div>
       </li>
     );

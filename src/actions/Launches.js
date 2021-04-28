@@ -12,7 +12,7 @@ export const requestLaunches = () => ({
 const receiveLaunches = response => ({
   type: ACTIONS.RECEIVE_LAUNCHES,
   payload: {
-    launches: response.data
+    launches: response.data.docs
   }
 });
 
