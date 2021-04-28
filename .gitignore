@@ -1,0 +1,8 @@
+# infrastructure
+node_modules
+
+# test
+coverage
+
+# production build
+build
