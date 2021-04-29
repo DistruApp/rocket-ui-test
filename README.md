@@ -87,7 +87,8 @@ In no particular order:
 
 * Update required version of node-sass in package.json to build under node 12
 * Add .gitignore
-* Replace existing Launch component with [react-collapsible](https://www.npmjs.com/package/react-collapsible)
+* Replace existing Launch component with [collapsibles](https://www.npmjs.com/package/@faceless-ui/collapsibles)
+* Add action to retrieve cost information from Rocket endpoint
 * Upgrade SpaceX API client from V3 to V4
 * Replace normalize.css with [Bootstrap](https://getbootstrap.com/)
 * Convert React components from classes to functions
