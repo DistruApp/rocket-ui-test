@@ -39,7 +39,6 @@ class LaunchesView extends Component {
 
       )
     }
-    console.log('found ' + launches.length + ' launches');
 
     return (<CollapsibleGroup className="collapsiblegroup">{launches}</CollapsibleGroup>);
   }

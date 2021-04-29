@@ -85,19 +85,19 @@ The basic items to do are related to displaying SpaceX launches.  However, there
 
 In no particular order:
 
-* Update required version of node-sass in package.json to build under node 12
-* Add .gitignore
-* Replace existing Launch component with [collapsibles](https://www.npmjs.com/package/@faceless-ui/collapsibles)
-* Add action to retrieve cost information from Rocket endpoint
+* Update required version of node-sass in package.json to build under node 12 (completed)
+* Add .gitignore (completed)
+* Replace existing Launch component with [collapsibles](https://www.npmjs.com/package/@faceless-ui/collapsibles) (completed)
+* Add action to retrieve cost information from Rocket endpoint (lazy loading)
 * Upgrade SpaceX API client from V3 to V4
-* Replace normalize.css with [Bootstrap](https://getbootstrap.com/)
+* Replace normalize.css with [Bootstrap](https://getbootstrap.com/) or other framework
 * Convert React components from classes to functions
 * Utilize React [Strict mode](https://reactjs.org/docs/strict-mode.html)
-* Ensure default values are displayed when no corresponding value is present in a data structure
+* Ensure default values are displayed when no corresponding value is present in a data structure (completed)
 * Upgrade to React Router 5 in preparation for router API changes
-* Ensure lazy loading of launches
+* Paginate and filter launch list
 * Replace Redux with React [Context](https://reactjs.org/docs/context.html)
 * Upgrade dependencies to latest versions
-* Comment each file and component (JSDocs?)
+* Comment each file and component
 * Develop or utilize UI component library for consistency
 * Write tests
