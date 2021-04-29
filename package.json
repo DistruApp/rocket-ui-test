@@ -19,6 +19,7 @@
   "license": "MIT",
   "homepage": "https://github.com/ReactJSResources/react-webpack-babel#readme",
   "dependencies": {
+    "@faceless-ui/collapsibles": "^1.0.2",
     "axios": "^0.18.0",
     "babel-polyfill": "6.26.0",
     "normalize.css": "^7.0.0",

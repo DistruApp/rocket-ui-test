@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import ConnectedView from './ConnectedView';
 import {fetchLaunchesIfNeeded} from "../actions/Launches";
 import Launch from '../components/Launch';
+import {
+   CollapsibleGroup
+ } from '@faceless-ui/collapsibles';
+
+import '../../styles/collapse.css';
 
 class LaunchesView extends Component {
   componentDidMount() {
@@ -12,15 +17,16 @@ class LaunchesView extends Component {
   getContent() {
     const { launchCollection } = this.props;
 
+    let launches = [];
+
     if (!launchCollection || launchCollection.fetching) {
-      return <div> LOADING </div>;
+      return(<div> LOADING </div>);
     }
 
     if (!launchCollection.launches.length) {
-      return <div> NO DATA </div>;
+      return(<div> NO DATA </div>);
     }
 
-    let launches = [];
 
     for (let i = 0; i < launchCollection.launches.length; i++) {
       const launch = launchCollection.launches[i];
@@ -33,15 +39,18 @@ class LaunchesView extends Component {
 
       )
     }
+    console.log('found ' + launches.length + ' launches');
 
-    return <ul>{launches}</ul>;
+    return (<CollapsibleGroup className="collapsiblegroup">{launches}</CollapsibleGroup>);
   }
 
   render() {
     return (
       <div>
         <h2> SpaceX launches </h2>
+        <div>
         {this.getContent()}
+        </div>
       </div>
     );
   }
