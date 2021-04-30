@@ -14,8 +14,8 @@ After initial quick look I'm still in the observe and orient phase.  When I retu
    2. Explore the data available.  Learned that the cost per launch data point is a rocket property not launch property, so will need to fetch from another API endpoint.
 
 ### 2021-04-29
-Below is a very loose leaf plan.  Mainly this commit is to give a starting timestamp for today's work.
-* Rocket fetch service
-* Hook based functional component
+Below is a very loose leaf plan.  Mainly this commit is to give a starting timestamp for today's work.  Minor learning experience that the rocket IDs are reused and not unique.  They are more of a model number and not a serial number.  Original idea was that the rocket data would not be shared between launches, but they are not unique so it will be more efficient to capture rocket data in the store.
+* Rocket fetch service - basic service available
+* Hook based functional component - needs minor rework to get rocket data from the store.
 * Reactstrap UI parts
-* Thunk based Redux?  Normally how I would handle fetch API.  It doesn't change the ability to get data, but would clean up the actions
+* Thunk based Redux  - Bump the priority since I want to prevent redundant rocket API calls.

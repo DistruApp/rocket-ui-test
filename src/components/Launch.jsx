@@ -11,7 +11,7 @@ class Launch extends Component {
         <div> Flight Number: { launch.flight_number } </div>
         {selected && (
           <div>
-            <div>Rocket ID: { launch.rocket.rocket_id } </div>
+            <div>Rocket ID: { launch.rocket } </div>
             <div>Description: { launch.details } </div>
           </div>
         )}

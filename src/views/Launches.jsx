@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ConnectedView from './ConnectedView';
 import {fetchLaunchesIfNeeded} from "../actions/Launches";
-import Launch from '../components/Launch';
+import NewLaunch from "../components/NewLaunch";
 
 class LaunchesView extends Component {
   constructor(props) {
@@ -34,7 +34,7 @@ class LaunchesView extends Component {
       const launch = launchCollection.launches[i];
 
       launches.push(
-        <Launch {...{
+        <NewLaunch {...{
           key: launch.flight_number,
           launch,
           onClickHandler: this.setSelectedFlightNumber,

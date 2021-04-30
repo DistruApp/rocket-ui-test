@@ -1,4 +1,4 @@
-import LaunchService from '../services/LaunchService';
+import SpaceXService from '../services/SpaceXService';
 
 export const ACTIONS = {
   REQUEST_LAUNCHES: 'REQUEST_LAUNCHES',
@@ -18,7 +18,7 @@ const receiveLaunches = response => ({
 
 export const fetchLaunches = dispatch => {
   dispatch(requestLaunches());
-  return LaunchService.get().then(response => dispatch(receiveLaunches(response)));
+  return SpaceXService.getLaunches().then(response => dispatch(receiveLaunches(response)));
 };
 
 const shouldFetchLaunches = launchCollection => !launchCollection || !launchCollection.fetching;
