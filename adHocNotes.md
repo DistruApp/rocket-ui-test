@@ -12,3 +12,10 @@ After initial quick look I'm still in the observe and orient phase.  When I retu
 
    1. Can I achieve partial success with the existing pieces of the system?  Yes, but the main point is to do clean up and refactor anyway.  Still it is nice to see what results can be acheived with minimal change.
    2. Explore the data available.  Learned that the cost per launch data point is a rocket property not launch property, so will need to fetch from another API endpoint.
+
+### 2021-04-29
+Below is a very loose leaf plan.  Mainly this commit is to give a starting timestamp for today's work.
+* Rocket fetch service
+* Hook based functional component
+* Reactstrap UI parts
+* Thunk based Redux?  Normally how I would handle fetch API.  It doesn't change the ability to get data, but would clean up the actions

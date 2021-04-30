@@ -7,7 +7,7 @@ class Launch extends Component {
     const { launch, selected, onClickHandler } = this.props;
     return (
       <li onClick={() => onClickHandler(launch.flight_number)}>
-        <h2> { launch.mission_name } </h2>
+        <h2> { launch.name } </h2>
         <div> Flight Number: { launch.flight_number } </div>
         {selected && (
           <div>
