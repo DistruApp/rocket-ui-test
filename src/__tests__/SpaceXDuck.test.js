@@ -1,5 +1,5 @@
 import reducer, { initialState, ACTION_CREATORS } from "../stores/SpaceXDuck";
-import SpaceXCONFIG from "../configs/SpaceXAPI.mock";
+import SpaceXCONFIG from "../configs/SpaceXAPI.testConfig";
 
 describe("SpaceX reducer", () => {
    it("should return initial state", () => {

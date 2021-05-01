@@ -5,10 +5,11 @@ const CONFIG = {
       launchApi: "Launch API failure",
       rocketApi: "Rocket API failure",
    },
+   defaultKey: "id",
 }
 
 // Helpers, TODO move into a common utilities area
-const convertArrayToIndexObject = (arr = [], key = "id") => {
+const convertArrayToIndexObject = (arr = [], key = CONFIG.defaultKey) => {
    if (!Array.isArray(arr)) return {};
    return arr.reduce((obj, current) => ({...obj, [current[key]]: current }), {});
 }
