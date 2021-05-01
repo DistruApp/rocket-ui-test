@@ -37,7 +37,7 @@ class LaunchesView extends Component {
       }} />
     );
 
-    return <ul>{launches}</ul>;
+    return launches;
   }
 
   setSelectedFlightId = (flightNumber = null) => {

@@ -1,5 +1,7 @@
 // Functional component to display a launch
 import React from 'react';
+import { Card, CardBody, CardSubtitle, CardText, CardTitle, Collapse } from 'reactstrap';
+import Loader from "./Loader";
 
 // Add commas between three digits for readability
 // TODO move to a helper utility area
@@ -9,16 +11,21 @@ export default function Launch(props) {
    const { launch, rocketDetails, selected, onClickHandler } = props;
 
    return (
-      <li onClick={() => onClickHandler(launch.id)}>
-        <h2> { launch.name }: { launch.flight_number } </h2>
-        {selected && rocketDetails && (
-          <div>
-            <div>Rocket Name: { rocketDetails.name }</div>
-            <div>Cost: ${ numberFormatter(rocketDetails.cost_per_launch) }</div>
-            <div>Description: { rocketDetails.description } </div>
-            <div>Rocket ID: { rocketDetails.id } </div>
-          </div>
-        )}
-      </li>
+      <Card onClick={() => onClickHandler(launch.id)} body>
+         <CardTitle>{ launch.name }: { launch.flight_number }</CardTitle>
+         <CardSubtitle>{ launch.details }</CardSubtitle>
+         <Collapse isOpen={selected}>
+            {rocketDetails ? (
+               <CardBody>
+                  <CardText>
+                     Rocket Name: { rocketDetails.name }<br />
+                     Cost: ${ numberFormatter(rocketDetails.cost_per_launch) }<br />
+                     Description: { rocketDetails.description }<br />
+                     Rocket ID: { rocketDetails.id }<br />
+                  </CardText>
+               </CardBody>
+            ) : <Loader />}
+         </Collapse>
+      </Card>
     );
 }
