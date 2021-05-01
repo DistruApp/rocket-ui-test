@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import Layout from './Layout';
 import Navigation from '../components/Navigation';
+import { ACTION_CREATORS } from "../stores/SpaceXDuck";
 
 const menu = Navigation();
 
@@ -26,7 +27,9 @@ function MasterLayoutHOC(WrappedComponent, pageName) {
   const mapStateToProps = state => state;
 
   const mapDispatchToProps = dispatch => ({
-    dispatch
+    dispatch,
+    getLanuches: () => dispatch(ACTION_CREATORS.getLanuches()),
+    getRocket: (id) => dispatch(ACTION_CREATORS.getRocket(id)),
   });
 
   return connect(

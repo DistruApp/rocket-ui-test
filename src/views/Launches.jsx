@@ -1,55 +1,53 @@
 import React, { Component } from 'react';
 import ConnectedView from './ConnectedView';
-import {fetchLaunchesIfNeeded} from "../actions/Launches";
-import NewLaunch from "../components/NewLaunch";
+import NewwerLaunch from "../components/NewwerLaunch";
 
 class LaunchesView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedFlightNumber: null,
+      selectedFlightId: null,
     }
   }
 
   componentDidMount() {
-    const { dispatch, launchesCollection } = this.props;
-    fetchLaunchesIfNeeded({ dispatch, launchesCollection });
+    const { getLanuches } = this.props;
+    getLanuches();
   }
 
   getContent() {
-    const { launchCollection } = this.props;
-    const { selectedFlightNumber } = this.state;
+    const { spacex } = this.props;
+    const { selectedFlightId } = this.state;
 
-    if (!launchCollection || launchCollection.fetching) {
+    if (spacex.fetchingLaunches) {
       return <div> LOADING </div>;
     }
 
-    if (!launchCollection.launches.length) {
+    if (spacex.launches.length === 0) {
       return <div> NO DATA </div>;
     }
 
-    let launches = [];
-
-    for (let i = 0; i < launchCollection.launches.length; i++) {
-      const launch = launchCollection.launches[i];
-
-      launches.push(
-        <NewLaunch {...{
-          key: launch.flight_number,
-          launch,
-          onClickHandler: this.setSelectedFlightNumber,
-          selected: launch.flight_number === selectedFlightNumber
-        }} />
-
-      )
-    }
+    const launches = Object.values(spacex.launches).map(launch => 
+      <NewwerLaunch {...{
+        key: launch.id,
+        launch,
+        rocketDetails: spacex.rockets[launch.rocket],
+        onClickHandler: this.setSelectedFlightId,
+        selected: launch.id === selectedFlightId
+      }} />
+    );
 
     return <ul>{launches}</ul>;
   }
 
-  setSelectedFlightNumber = (flightNumber = null) => {
-    const { selectedFlightNumber } = this.state;
-    this.setState({ selectedFlightNumber: selectedFlightNumber !== flightNumber ? flightNumber : null});
+  setSelectedFlightId = (flightNumber = null) => {
+    const { spacex, getRocket } = this.props
+    const { selectedFlightId } = this.state;
+    const rocketId = spacex.launches[flightNumber].rocket;
+    if (spacex.rockets[rocketId] === undefined) {
+      getRocket(rocketId);
+    }
+    this.setState({ selectedFlightId: selectedFlightId !== flightNumber ? flightNumber : null});
   }
 
   render() {
