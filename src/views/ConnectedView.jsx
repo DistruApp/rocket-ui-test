@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux";
 
 import Layout from './Layout';
 import Navigation from '../components/Navigation';
@@ -23,16 +22,7 @@ function MasterLayoutHOC(WrappedComponent, pageName) {
     }
   }
 
-  const mapStateToProps = state => state;
-
-  const mapDispatchToProps = dispatch => ({
-    dispatch
-  });
-
-  return connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(MasterLayoutImpl);
+  return MasterLayoutImpl
 }
 
 export default MasterLayoutHOC;

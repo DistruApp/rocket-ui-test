@@ -23,11 +23,7 @@
     "normalize.css": "^7.0.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
-    "react-hot-loader": "^4.12.14",
-    "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
-    "react-router-redux": "^4.0.8",
-    "redux": "^4.0.4",
     "styles": "^0.2.1"
   },
   "devDependencies": {
@@ -66,7 +62,16 @@
   ],
   "babel": {
     "presets": [
-      "@babel/preset-env",
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          },
+          "corejs": "3",
+          "useBuiltIns": "entry"
+        }
+      ],
       "@babel/preset-react"
     ]
   },
