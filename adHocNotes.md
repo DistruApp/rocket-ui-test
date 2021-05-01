@@ -19,3 +19,9 @@ Below is a very loose leaf plan.  Mainly this commit is to give a starting times
 * Hook based functional component - needs minor rework to get rocket data from the store.
 * Reactstrap UI parts
 * Thunk based Redux  - Bump the priority since I want to prevent redundant rocket API calls.
+
+### 2021-05-01 
+Main working time for this project!
+* Thunk based Redux - This will clean up the actions and give me a place to store the shared rocket data
+* Rework the display component
+* Reactstrap UI parts

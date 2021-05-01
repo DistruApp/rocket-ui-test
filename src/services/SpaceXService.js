@@ -12,7 +12,8 @@ const api = axios.create();
 
 const SpaceXService = {
   getLaunches: () => api.get(`${CONFIG.launchUrl}`),
-  getRockets: (id) => api.get(`${CONFIG.rocketUrl}/${id}`)
+  getRocket: (id) => api.get(`${CONFIG.rocketUrl}/${id}`),
+  getRockets: () => api.get(`${CONFIG.rocketUrl}`),
 };
 
 export default SpaceXService

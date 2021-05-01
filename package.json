@@ -9,6 +9,7 @@
     "lint": "eslint --ext js --ext jsx src || exit 0",
     "dev": " webpack-dashboard -- webpack-dev-server --mode development",
     "test": "export NODE_ENV=test && jest",
+    "test-watch": "export NODE_ENV=test && jest --watchAll",
     "pretty": "prettier --print-width 100 --single-quote all --write \"src/**/*.js\""
   },
   "repository": {
@@ -28,7 +29,8 @@
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
     "react-router-redux": "^4.0.8",
-    "redux": "^4.0.4"
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0"
   },
   "babel": {
     "presets": [
@@ -79,6 +81,7 @@
   },
   "jest": {
     "verbose": true,
+    "testURL": "http://localhost",
     "bail": true,
     "collectCoverage": true,
     "coverageDirectory": "coverage",
