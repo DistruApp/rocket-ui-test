@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 class Launch extends Component {
 
   render() {
-
-    let launch = this.props.launch;
+    const launch = this.props.launch;
 
     return (
       <li>

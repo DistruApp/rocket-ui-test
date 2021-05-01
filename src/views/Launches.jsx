@@ -20,13 +20,7 @@ const LaunchesView = () => {
   for (let i = 0; i < launchCollection.length; i++) {
     const launch = launchCollection[i];
 
-    launches.push(
-      <Launch {...{
-        key: launch.launch_id,
-        launch
-      }} />
-
-    )
+    launches.push(<Launch key={i} {...{launch}} />)
   }
 
   return (
