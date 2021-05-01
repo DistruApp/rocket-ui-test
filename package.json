@@ -4,8 +4,8 @@
   "description": "Test for UI Engineering Candidates",
   "main": "''",
   "scripts": {
-    "build": "npx parcel build src/index.jsx",
-    "start": "npx parcel serve src/index.jsx -p 7357",
+    "build": "npx parcel build src/template.html",
+    "start": "npx parcel serve src/template.html -p 7357",
     "lint": "eslint --ext js --ext jsx src || exit 0",
     "test": "export NODE_ENV=test && jest",
     "pretty": "prettier --print-width 100 --single-quote all --write \"src/**/*.js\""
