@@ -25,3 +25,5 @@ Main working time for this project!
 * Thunk based Redux - This will clean up the actions and give me a place to store the shared rocket data
 * Rework the display component
 * Reactstrap UI parts
+
+Went back and added mocking for the rest calls, which discovered a minor bug.

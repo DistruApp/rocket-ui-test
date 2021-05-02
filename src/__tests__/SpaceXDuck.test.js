@@ -1,5 +1,13 @@
-import reducer, { initialState, ACTION_CREATORS } from "../stores/SpaceXDuck";
+import configureMockStore from "redux-mock-store";
+import thunk from "redux-thunk";
+import reducer, { initialState, ACTION_CREATORS, ACTIONS } from "../stores/SpaceXDuck";
+import SpaceXService from "../services/SpaceXService";
 import SpaceXCONFIG from "../configs/SpaceXAPI.testConfig";
+
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
+
+jest.mock("../services/SpaceXService");
 
 describe("SpaceX reducer", () => {
    it("should return initial state", () => {
@@ -55,5 +63,74 @@ describe("SpaceX reducer", () => {
       // ensure that loading a second rocket works
       action = ACTION_CREATORS.setRocket(exampleRocket2);
       expect(reducer(expectedState, action)).toEqual(expectedState2);
+   })
+})
+
+describe("SpaceX extra actions", () => {
+   it("should handle getLaunches", () => {
+      const expectedActions = [
+         { type: ACTIONS.fetchingLaunches, payload: { fetchingLaunches: true }},
+         { type: ACTIONS.setLaunches, payload: { launches: [SpaceXCONFIG.exampleLaunch] }},
+         { type: ACTIONS.fetchingLaunches, payload: { fetchingLaunches: false }},
+      ];
+      const response = {
+         status: 200,
+         data: [SpaceXCONFIG.exampleLaunch]
+      }
+      SpaceXService.getLaunches.mockResolvedValue(response);
+      const store = mockStore({spacex: {...initialState}});
+      store.dispatch(ACTION_CREATORS.getLanuches()).then(() => {
+         expect(store.getActions()).toEqual(expectedActions);
+      });
+   })
+   it("getLaunches should handle '500' status", () => {
+      const expectedActions = [
+         { type: ACTIONS.fetchingLaunches, payload: { fetchingLaunches: true }},
+         { type: ACTIONS.fetchingLaunches, payload: { fetchingLaunches: false }},
+      ];
+      const response = { 
+         status: 500,
+      }
+      SpaceXService.getLaunches.mockResolvedValue(response);
+      const store = mockStore({spacex: {...initialState}});
+      store.dispatch(ACTION_CREATORS.getLanuches()).then(() => {
+         expect(store.getActions()).toEqual(expectedActions);
+      });
+   })
+   it("getLaunchers should not refetch launches", () => {
+      const response = {
+         status: 200,
+         data: [SpaceXCONFIG.exampleLaunch]
+      }
+      SpaceXService.getLaunches.mockResolvedValue(response);
+      const store = mockStore({spacex: {...initialState, launches: {key: "fake"} }});
+      store.dispatch(ACTION_CREATORS.getLanuches()).then(() => {
+         expect(store.getActions()).toEqual([]);
+      });
+   })
+   it("should handle getRocket", () => {
+      const expectedActions = [
+         { type: ACTIONS.setRocket, payload: { rocket: SpaceXCONFIG.exampleRocket }},
+      ];
+      const response = {
+         status: 200,
+         data: SpaceXCONFIG.exampleRocket
+      }
+      SpaceXService.getRocket.mockResolvedValue(response);
+      const store = mockStore({spacex: {...initialState}});
+      store.dispatch(ACTION_CREATORS.getRocket("id")).then(() => {
+         expect(store.getActions()).toEqual(expectedActions);
+      });
+   })
+   it("getRocket should not refetch existing rocket", () => {
+      const response = {
+         status: 200,
+         data: SpaceXCONFIG.exampleRocket
+      }
+      SpaceXService.getRocket.mockResolvedValue(response);
+      const store = mockStore({spacex: {...initialState, rockets: {id: {key: "fake"}} }});
+      store.dispatch(ACTION_CREATORS.getRocket("id")).then(() => {
+         expect(store.getActions()).toEqual([]);
+      });
    })
 })

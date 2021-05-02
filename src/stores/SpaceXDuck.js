@@ -68,12 +68,12 @@ export const ACTION_CREATORS = {
 
    getLanuches: () => (dispatch, getState) => {
       const store = getState();
-      if (store.spacex.launches.length > 0) return;
+      if (Object.values(store.spacex.launches).length > 0) return Promise.resolve();
       dispatch(ACTION_CREATORS.setFetchingLaunches(true));
-      SpaceXService.getLaunches()
+      return SpaceXService.getLaunches()
          .then((response) => {
             if(response.status === 200) {
-               dispatch(ACTION_CREATORS.setLaunches(response.data)) 
+               return dispatch(ACTION_CREATORS.setLaunches(response.data)) 
             }})
          .catch((error) => console.error(CONFIG.errorMessages.launchApi, error))
          .finally(() => dispatch(ACTION_CREATORS.setFetchingLaunches()));
@@ -81,11 +81,11 @@ export const ACTION_CREATORS = {
 
    getRocket: (id) => (dispatch, getState) => {
       const store = getState();
-      if (store.spacex.rockets[id] !== undefined) return;
-      SpaceXService.getRocket(id)
+      if (store.spacex.rockets[id] !== undefined) return Promise.resolve();
+      return SpaceXService.getRocket(id)
          .then((response) => {
             if(response.status === 200) {
-               dispatch(ACTION_CREATORS.setRocket(response.data))
+               return dispatch(ACTION_CREATORS.setRocket(response.data))
             }})
          .catch((error) => console.error(CONFIG.errorMessages.rocketApi, error));
    }
