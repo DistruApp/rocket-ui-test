@@ -1,23 +1,31 @@
-import React, { Component } from 'react';
+// Functional component to display a launch
+import React from 'react';
+import { Card, CardBody, CardSubtitle, CardText, CardTitle, Collapse } from 'reactstrap';
+import Loader from "./Loader";
 
-// TODO: Cost Per Launch is a rocket property not passed in the existing data set.
-class Launch extends Component {
+// Add commas between three digits for readability
+// TODO move to a helper utility area
+const numberFormatter = (dollar) => dollar.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 
-  render() {
-    const { launch, selected, onClickHandler } = this.props;
-    return (
-      <li onClick={() => onClickHandler(launch.flight_number)}>
-        <h2> { launch.name } </h2>
-        <div> Flight Number: { launch.flight_number } </div>
-        {selected && (
-          <div>
-            <div>Rocket ID: { launch.rocket } </div>
-            <div>Description: { launch.details } </div>
-          </div>
-        )}
-      </li>
+export default function Launch(props) {
+   const { launch, rocketDetails, selected, onClickHandler } = props;
+
+   return (
+      <Card onClick={() => onClickHandler(launch.id)} body>
+         <CardTitle>{ launch.name }: { launch.flight_number }</CardTitle>
+         <CardSubtitle>{ launch.details }</CardSubtitle>
+         <Collapse isOpen={selected}>
+            {rocketDetails ? (
+               <CardBody>
+                  <CardText>
+                     Rocket Name: { rocketDetails.name }<br />
+                     Cost: ${ numberFormatter(rocketDetails.cost_per_launch) }<br />
+                     Description: { rocketDetails.description }<br />
+                     Rocket ID: { rocketDetails.id }<br />
+                  </CardText>
+               </CardBody>
+            ) : <Loader />}
+         </Collapse>
+      </Card>
     );
-  }
 }
-
-export default Launch;

@@ -66,7 +66,7 @@ describe("SpaceX reducer", () => {
    })
 })
 
-describe("SpaceX extra actions", () => {
+describe("SpaceX extra thunk actions", () => {
    it("should handle getLaunches", () => {
       const expectedActions = [
          { type: ACTIONS.fetchingLaunches, payload: { fetchingLaunches: true }},
@@ -79,7 +79,7 @@ describe("SpaceX extra actions", () => {
       }
       SpaceXService.getLaunches.mockResolvedValue(response);
       const store = mockStore({spacex: {...initialState}});
-      store.dispatch(ACTION_CREATORS.getLanuches()).then(() => {
+      store.dispatch(ACTION_CREATORS.fetchLanuches()).then(() => {
          expect(store.getActions()).toEqual(expectedActions);
       });
    })
@@ -93,7 +93,7 @@ describe("SpaceX extra actions", () => {
       }
       SpaceXService.getLaunches.mockResolvedValue(response);
       const store = mockStore({spacex: {...initialState}});
-      store.dispatch(ACTION_CREATORS.getLanuches()).then(() => {
+      store.dispatch(ACTION_CREATORS.fetchLanuches()).then(() => {
          expect(store.getActions()).toEqual(expectedActions);
       });
    })
@@ -104,7 +104,7 @@ describe("SpaceX extra actions", () => {
       }
       SpaceXService.getLaunches.mockResolvedValue(response);
       const store = mockStore({spacex: {...initialState, launches: {key: "fake"} }});
-      store.dispatch(ACTION_CREATORS.getLanuches()).then(() => {
+      store.dispatch(ACTION_CREATORS.fetchLanuches()).then(() => {
          expect(store.getActions()).toEqual([]);
       });
    })
@@ -118,7 +118,7 @@ describe("SpaceX extra actions", () => {
       }
       SpaceXService.getRocket.mockResolvedValue(response);
       const store = mockStore({spacex: {...initialState}});
-      store.dispatch(ACTION_CREATORS.getRocket("id")).then(() => {
+      store.dispatch(ACTION_CREATORS.fetchRocket("id")).then(() => {
          expect(store.getActions()).toEqual(expectedActions);
       });
    })
@@ -129,7 +129,7 @@ describe("SpaceX extra actions", () => {
       }
       SpaceXService.getRocket.mockResolvedValue(response);
       const store = mockStore({spacex: {...initialState, rockets: {id: {key: "fake"}} }});
-      store.dispatch(ACTION_CREATORS.getRocket("id")).then(() => {
+      store.dispatch(ACTION_CREATORS.fetchRocket("id")).then(() => {
          expect(store.getActions()).toEqual([]);
       });
    })

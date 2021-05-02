@@ -28,8 +28,8 @@ function MasterLayoutHOC(WrappedComponent, pageName) {
 
   const mapDispatchToProps = dispatch => ({
     dispatch,
-    getLanuches: () => dispatch(ACTION_CREATORS.getLanuches()),
-    getRocket: (id) => dispatch(ACTION_CREATORS.getRocket(id)),
+    fetchLanuches: () => dispatch(ACTION_CREATORS.fetchLanuches()),
+    fetchRocket: (id) => dispatch(ACTION_CREATORS.fetchRocket(id)),
   });
 
   return connect(

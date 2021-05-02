@@ -66,7 +66,7 @@ export const ACTION_CREATORS = {
       payload: { rocket }
    }),
 
-   getLanuches: () => (dispatch, getState) => {
+   fetchLanuches: () => (dispatch, getState) => {
       const store = getState();
       if (Object.values(store.spacex.launches).length > 0) return Promise.resolve();
       dispatch(ACTION_CREATORS.setFetchingLaunches(true));
@@ -79,7 +79,7 @@ export const ACTION_CREATORS = {
          .finally(() => dispatch(ACTION_CREATORS.setFetchingLaunches()));
    },
 
-   getRocket: (id) => (dispatch, getState) => {
+   fetchRocket: (id) => (dispatch, getState) => {
       const store = getState();
       if (store.spacex.rockets[id] !== undefined) return Promise.resolve();
       return SpaceXService.getRocket(id)

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ConnectedView from './ConnectedView';
-import NewwerLaunch from "../components/NewwerLaunch";
+import Launch from "../components/Launch";
 
 class LaunchesView extends Component {
   constructor(props) {
@@ -11,8 +11,8 @@ class LaunchesView extends Component {
   }
 
   componentDidMount() {
-    const { getLanuches } = this.props;
-    getLanuches();
+    const { fetchLanuches } = this.props;
+    fetchLanuches();
   }
 
   getContent() {
@@ -28,7 +28,7 @@ class LaunchesView extends Component {
     }
 
     const launches = Object.values(spacex.launches).map(launch => 
-      <NewwerLaunch {...{
+      <Launch {...{
         key: launch.id,
         launch,
         rocketDetails: spacex.rockets[launch.rocket],
@@ -41,12 +41,10 @@ class LaunchesView extends Component {
   }
 
   setSelectedFlightId = (flightNumber = null) => {
-    const { spacex, getRocket } = this.props
+    const { spacex, fetchRocket } = this.props
     const { selectedFlightId } = this.state;
     const rocketId = spacex.launches[flightNumber].rocket;
-    if (spacex.rockets[rocketId] === undefined) {
-      getRocket(rocketId);
-    }
+    fetchRocket(rocketId);
     this.setState({ selectedFlightId: selectedFlightId !== flightNumber ? flightNumber : null});
   }
 
