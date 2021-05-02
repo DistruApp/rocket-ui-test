@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Blockquote, Text } from '@arwes/core';
 
 const Navigation = () => (
-  <ul>
-    <li><Link to="/launches">Launches</Link></li>
-  </ul>
+  <Link to="/launches">
+    <Blockquote>
+      <Text>Launches</Text>
+    </Blockquote>
+  </Link>
 );
 
 export default Navigation;

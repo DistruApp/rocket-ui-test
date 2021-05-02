@@ -6,10 +6,10 @@ const Layout = ({
   return (
     <main className={`${pageName} layout`}>
       <nav>
-        { menu }
+        {menu}
       </nav>
 
-      <section>
+      <section style={{display: 'flex'}}>
         { children }
       </section>
     </main>

@@ -1,18 +1,14 @@
-import React, { Component } from 'react';
+import React, {useState} from 'react';
+import { Text } from '@arwes/core';
 
-class Launch extends Component {
-
-  render() {
-
-    let launch = this.props.launch;
-
-    return (
-      <li>
-        <h2> { launch.mission_name } </h2>
-        <div> Flight Number: { launch.flight_number } </div>
-      </li>
-    );
-  }
+const Launch = props => {
+  const { launch, getDetail } = props
+  
+  return (
+    <li onClick={() => getDetail(launch.flight_number)} style={{width: '40%'}}>
+      <Text as='h4' style={{cursor: 'pointer'}}>&nbsp;{ launch.mission_name }</Text>
+    </li>
+  );
 }
 
 export default Launch;
