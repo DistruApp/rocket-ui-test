@@ -74,8 +74,10 @@ export const ACTION_CREATORS = {
          .then((response) => {
             if(response.status === 200) {
                return dispatch(ACTION_CREATORS.setLaunches(response.data)) 
-            }})
-         .catch((error) => console.error(CONFIG.errorMessages.launchApi, error))
+            }
+            return Promise.resolve();
+         })
+         .catch(/* TODO handle error: (error) => console.error(CONFIG.errorMessages.launchApi, error)*/)
          .finally(() => dispatch(ACTION_CREATORS.setFetchingLaunches()));
    },
 
@@ -86,8 +88,10 @@ export const ACTION_CREATORS = {
          .then((response) => {
             if(response.status === 200) {
                return dispatch(ACTION_CREATORS.setRocket(response.data))
-            }})
-         .catch((error) => console.error(CONFIG.errorMessages.rocketApi, error));
+            }
+            return Promise.resolve();
+         })
+         .catch(/* TODO handle error: (error) => console.error(CONFIG.errorMessages.rocketApi, error)*/);
    }
 }
 
