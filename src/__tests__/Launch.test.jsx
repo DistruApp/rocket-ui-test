@@ -40,8 +40,7 @@ describe("Launch", () => {
             selected={false}
             onClickHandler={clickJest}
          />);
-      const body = component.find("Collapse");
-      expect(body.props().isOpen).toEqual(false);
+      expect(component.find("Collapse").props().isOpen).toEqual(false);
    })
 
    it("should show a loader", () => {
@@ -53,8 +52,8 @@ describe("Launch", () => {
             selected
             onClickHandler={clickJest}
          />);
-      const body = component.find("Loader");
-      expect(body).toBeDefined();
+      expect(component.find("CardText")).toHaveLength(0);
+      expect(component.find("Loader")).toHaveLength(1);
    })
 
    it("should show the details", () => {
@@ -66,7 +65,7 @@ describe("Launch", () => {
             selected
             onClickHandler={clickJest}
          />);
-      const body = component.find("CardText");
-      expect(body).toBeDefined();
+      expect(component.find("CardText")).toHaveLength(1);
+      expect(component.find("Loader")).toHaveLength(0);
    })
 })
