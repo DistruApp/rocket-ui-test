@@ -27,3 +27,7 @@ Main working time for this project!
 * Reactstrap UI parts
 
 Went back and added mocking for the rest calls, which discovered a minor bug.
+
+
+### 2021-05-02
+Went back and added enzyme tests for the UI.
