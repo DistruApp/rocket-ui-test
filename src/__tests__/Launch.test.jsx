@@ -54,7 +54,7 @@ describe("Launch", () => {
             onClickHandler={clickJest}
          />);
       const body = component.find("Loader");
-      expect(body).toHaveLength(1);
+      expect(body).toBeDefined();
    })
 
    it("should show the details", () => {
@@ -67,6 +67,6 @@ describe("Launch", () => {
             onClickHandler={clickJest}
          />);
       const body = component.find("CardText");
-      expect(body).toHaveLength(1);
+      expect(body).toBeDefined();
    })
 })
