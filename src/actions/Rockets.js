@@ -5,8 +5,11 @@ export const ACTIONS = {
   RECEIVE_ROCKET: 'RECEIVE_ROCKET'
 };
 
-export const requestRocket = () => ({
-  type: ACTIONS.REQUEST_ROCKET
+export const requestRocket = (rocketId) => ({
+  type: ACTIONS.REQUEST_ROCKET,
+  payload: {
+    id: rocketId
+  }
 });
 
 const receiveRocket = response => ({
@@ -18,7 +21,7 @@ const receiveRocket = response => ({
 
 export const fetchRocket = (dispatch, rocketId) => {
    // TODO how to get rocket id in here
-  dispatch(requestRocket());
+  dispatch(requestRocket(rocketId));
   return RocketService.get(rocketId).then(response => dispatch(receiveRocket(response)));
 };
 
@@ -29,7 +32,7 @@ const shouldFetchRocket = (rocketCollection, rocketId) => {
 }
 
 export const fetchRocketIfNeeded = ({ dispatch, rocketCollection, rocketId }) =>
-  shouldFetchRocket(rocketCollection, rocketId) && fetchRockets(dispatch, rocketId);
+  shouldFetchRocket(rocketCollection, rocketId) && fetchRocket(dispatch, rocketId);
 
   // add a component for displaying individual rocket info 
   // on component did mount get rocketId from props

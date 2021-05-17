@@ -8,16 +8,16 @@ const initialState = {
 
 // on insert add id to list
 const actionHandlers = {
-  [ACTIONS.REQUEST_ROCKET]: ({ state }) => ({
+  [ACTIONS.REQUEST_ROCKET]: ({ state, action }) => ({
     ...state,
     fetching: true
   }),
   [ACTIONS.RECEIVE_ROCKET]: ({ state, action }) => { 
-    const rocket = {}[action.payload.rocket.rocket_id] = action.payload.rocket;
+    const rocket = {}[action.payload.rocket.rocketId] = action.payload.rocket;
     return {
       ...state,
       fetching: false,
-      rocket_ids: [...state.rocket_ids, action.payload.rocket.rocket_id],
+      rocketIds: [...state.rocketIds, action.payload.rocket.rocketId],
       rockets: Object.assign({}, state.rockets, rocket)
     }
   }
