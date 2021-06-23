@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import { setError, setLoading } from "./actions";
+import {setError, setLaunches, setLoading} from "./actions";
 import { initialState, store } from "./store";
 
 const handleEffect = (state, action) => {
@@ -8,6 +8,8 @@ const handleEffect = (state, action) => {
             return setLoading(state, action.payload)
         case 'set-error':
             return setError(state, action.payload)
+        case 'set-launches':
+            return setLaunches(state, action.payload)
 
         default: {
             console.log(`Unhandled action type: ${action.type}`);

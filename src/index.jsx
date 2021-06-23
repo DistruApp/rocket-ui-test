@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import Routes from './routes';
 import StateProvider from "./stores/StateProvider";
+import {LoadData} from "./stores/LoadData";
 
 import "styles/base/_main.sass";  // Global styles
 import "styles/base/_common.sass";  // Global styles
@@ -11,9 +12,11 @@ import "styles/_style.sass";  // Css-module styles
 const renderApp = (Component) => {
   ReactDOM.render(
     <StateProvider>
-      <AppContainer>
-        <Component/>
-      </AppContainer>
+        <LoadData>
+            <AppContainer>
+                <Component/>
+            </AppContainer>
+        </LoadData>
     </StateProvider>,
     document.getElementById('app')
   );
