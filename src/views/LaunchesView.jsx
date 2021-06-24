@@ -7,27 +7,27 @@ const LaunchesView = () => {
 
     if (state.ui.error.show) {
         return (
-            <div>
+            <>
                 <h2>SpaceX Launches</h2>
                 { state.ui.error.msg }
-            </div>
+            </>
         );
     }
 
     if (state.ui.loading ) {
         return (
-            <div>
+            <>
                 <h2>SpaceX Launches</h2>
                 <span>
                     Loading launch data...
                 </span>
-            </div>
+            </>
         );
     }
 
     if (state.launches.length > 0) {
         return (
-            <div>
+            <>
                 <h2>SpaceX Launches</h2>
                 {
                     state.launches.map((launch) => {
@@ -38,7 +38,7 @@ const LaunchesView = () => {
                         );
                     })
                 }
-            </div>
+            </>
         );
     }
     return null;

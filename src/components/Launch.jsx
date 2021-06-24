@@ -1,13 +1,63 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { store } from "../stores/store";
+import LaunchDetail from "./LaunchDetail";
 
 const Launch = ({ launch }) => {
+    const { dispatch, state } = useContext(store);
+
+    const showLaunchDetail = state.ui.showLaunchDetail.show && state.ui.showLaunchDetail.id === launch.id;
+
+    const hideDetail = (launchId) => {
+        dispatch({type: 'set-show-launch-detail', payload: {show: false, id: launchId}})
+    }
+
+    const showDetail = (launchId) => {
+        dispatch({type: 'set-show-launch-detail', payload: {show: true, id: launchId}})
+    }
+
     return (
-        <li>
-            <h2> { launch.name } </h2>
-            { launch.flight_number &&
-                <div> Flight Number: { launch.flight_number } </div>
+        <div className="launch-container">
+            <h2>
+                { launch.name }
+            </h2>
+            <div className="launch-overview">
+                <div>
+                    <h5>Flight Number</h5>
+                    <span>
+                        { launch.flight_number }
+                    </span>
+                </div>
+                <div>
+                    <h5>
+                        Success
+                    </h5>
+                    <span>
+                        { launch.success ? 'Yes' : 'No' }
+                    </span>
+                </div>
+                <div>
+                    {
+                        showLaunchDetail
+                        ? <button
+                            onClick={() => hideDetail(launch.id)}
+                            type="button"
+                        >
+                            hide details
+                        </button>
+                        : <button
+                            onClick={() => showDetail(launch.id)}
+                            type="button"
+                        >
+                            show details
+                        </button>
+                    }
+
+                </div>
+            </div>
+            {
+                showLaunchDetail && <LaunchDetail launch={launch} />
             }
-        </li>
+        </div>
     );
 }
 

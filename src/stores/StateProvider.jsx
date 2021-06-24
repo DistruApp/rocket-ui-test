@@ -1,5 +1,10 @@
 import React, { useReducer } from "react";
-import {setError, setLaunches, setLoading, setShowLaunchDetail} from "./actions";
+import {
+    setError,
+    setLaunches,
+    setLoading,
+    setShowLaunchDetail
+} from "./actions";
 import { initialState, store } from "./store";
 
 const handleEffect = (state, action) => {
