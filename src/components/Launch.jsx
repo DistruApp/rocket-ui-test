@@ -7,16 +7,14 @@ const Launch = ({ launch }) => {
 
     const showLaunchDetail = state.ui.showLaunchDetail.show && state.ui.showLaunchDetail.id === launch.id;
 
-    const hideDetail = (launchId) => {
-        dispatch({type: 'set-show-launch-detail', payload: {show: false, id: launchId}})
-    }
-
-    const showDetail = (launchId) => {
-        dispatch({type: 'set-show-launch-detail', payload: {show: true, id: launchId}})
+    const toggleShowDetail = (launchId) => {
+        dispatch({type: 'set-show-launch-detail', payload: {show: !showLaunchDetail, id: launchId}})
     }
 
     return (
-        <div className="launch-container">
+        <div className="launch-container"
+            onClick={() => toggleShowDetail(launch.id)}
+        >
             <h2>
                 { launch.name }
             </h2>
@@ -34,24 +32,6 @@ const Launch = ({ launch }) => {
                     <span>
                         { launch.success ? 'Yes' : 'No' }
                     </span>
-                </div>
-                <div>
-                    {
-                        showLaunchDetail
-                        ? <button
-                            onClick={() => hideDetail(launch.id)}
-                            type="button"
-                        >
-                            hide details
-                        </button>
-                        : <button
-                            onClick={() => showDetail(launch.id)}
-                            type="button"
-                        >
-                            show details
-                        </button>
-                    }
-
                 </div>
             </div>
             {

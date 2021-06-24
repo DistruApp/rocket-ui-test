@@ -4,40 +4,38 @@ import {store} from "../stores/store";
 const Launch = ({ launch }) => {
     const { dispatch, state } = useContext(store)
 
-    const costPerLaunch = () => {
-        if (launch.rocket) {
-            const rocket = state.rockets.filter(rocket => rocket.id === launch.rocket)
-            if (rocket[0] && rocket[0].cost_per_launch) {
-                return `$${rocket[0].cost_per_launch.toLocaleString()}`;
-            }
-        }
-        return null;
-    }
+    const rocket = state.rockets.filter(rocket => rocket.id === launch.rocket)[0]
 
     return (
         <>
             <div className="rocket-detail">
-                <>
                     {
-                        launch.rocket &&
-                            <div>
-                                <h5>
-                                    Rocket ID
-                                </h5>
-                                <span>
-                                    { launch.rocket }
-                                </span>
-                            </div>
+                        launch.rocket && rocket &&
+                            <>
+                                <div>
+                                    <h5>
+                                        Rocket Name
+                                    </h5>
+                                    <span>
+                                        { rocket.name }
+                                    </span>
+                                    <h5>
+                                        Rocket ID
+                                    </h5>
+                                    <span>
+                                        { launch.rocket }
+                                    </span>
+                                </div>
+                                <div>
+                                    <h5>
+                                        Cost per Launch
+                                    </h5>
+                                    <span>
+                                        { `$${rocket.cost_per_launch.toLocaleString()}` }
+                                    </span>
+                                </div>
+                            </>
                     }
-                    <div>
-                        <h5>
-                            Cost per Launch
-                        </h5>
-                        <span>
-                            { costPerLaunch() }
-                        </span>
-                    </div>
-                </>
             </div>
             <div className="launch-detail">
                 {
