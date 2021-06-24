@@ -3,6 +3,7 @@ import {
     setError,
     setLaunches,
     setLoading,
+    setRockets,
     setShowLaunchDetail
 } from "./actions";
 import { initialState, store } from "./store";
@@ -15,6 +16,8 @@ const handleEffect = (state, action) => {
             return setError(state, action.payload)
         case 'set-launches':
             return setLaunches(state, action.payload)
+        case 'set-rockets':
+            return setRockets(state, action.payload)
         case 'set-show-launch-detail':
             return setShowLaunchDetail(state, action.payload)
 
