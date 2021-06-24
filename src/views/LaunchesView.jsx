@@ -1,20 +1,20 @@
-import React, { useContext } from 'react';
+import React, {useContext, useEffect} from 'react';
 import Launch from '../components/Launch';
 import { store } from "../stores/store";
 
 const LaunchesView = () => {
     const {dispatch, state} = useContext(store);
 
-    if (state.error.show) {
+    if (state.ui.error.show) {
         return (
             <div>
                 <h2>SpaceX Launches</h2>
-                { state.error.msg }
+                { state.ui.error.msg }
             </div>
         );
     }
 
-    if (state.loading ) {
+    if (state.ui.loading ) {
         return (
             <div>
                 <h2>SpaceX Launches</h2>
@@ -33,7 +33,6 @@ const LaunchesView = () => {
                     state.launches.map((launch) => {
                         return (
                             <Launch
-                                key={launch.id}
                                 launch={launch}
                             />
                         );

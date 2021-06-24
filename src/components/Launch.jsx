@@ -1,10 +1,12 @@
 import React from 'react';
 
-const Launch = (launch) => {
+const Launch = ({ launch }) => {
     return (
         <li>
-            <h2> { launch.mission_name } </h2>
-            <div> Flight Number: { launch.flight_number } </div>
+            <h2> { launch.name } </h2>
+            { launch.flight_number &&
+                <div> Flight Number: { launch.flight_number } </div>
+            }
         </li>
     );
 }
