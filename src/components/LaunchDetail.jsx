@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {store} from "../stores/store";
+import { store } from "../stores/store";
 
 const Launch = ({ launch }) => {
     const { dispatch, state } = useContext(store)

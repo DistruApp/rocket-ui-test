@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import Launch from '../components/Launch';
+import Launch from './Launch';
 import { store } from "../stores/store";
 
-const LaunchesView = () => {
+const LaunchesContainer = () => {
     const { state } = useContext(store);
 
     if (state.ui.error.show) {
@@ -45,4 +45,4 @@ const LaunchesView = () => {
     return null;
 }
 
-export default LaunchesView;
+export default LaunchesContainer;
