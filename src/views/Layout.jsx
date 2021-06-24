@@ -1,19 +1,21 @@
 import React from 'react';
+import Navigation from '../components/Navigation';
 
-const Layout = ({
-                  pageName, menu, children
-                }) => {
-  return (
-    <main className={`${pageName} layout`}>
-      <nav>
-        { menu }
-      </nav>
+const Layout = ({ children }) => {
 
-      <section>
-        { children }
-      </section>
-    </main>
-  );
+    return (
+        <div>
+            <main className="layout">
+                <nav>
+                    <Navigation />
+                </nav>
+
+                <section>
+                    { children }
+                </section>
+            </main>
+        </div>
+    );
 };
 
 export default Layout;

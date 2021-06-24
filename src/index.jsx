@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import Routes from './routes';
 import StateProvider from "./stores/StateProvider";
+import Layout from "./views/Layout";
 import LoadData from "./stores/LoadData";
 
 import "styles/base/_main.sass";  // Global styles
@@ -15,7 +16,9 @@ const renderApp = (Component) => {
         <AppContainer>
             <StateProvider>
                 <LoadData>
-                    <Component />
+                    <Layout>
+                        <Component />
+                    </Layout>
                 </LoadData>
             </StateProvider>
         </AppContainer>,

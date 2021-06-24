@@ -1,9 +1,9 @@
-import React, {useContext, useEffect} from 'react';
+import React, { useContext } from 'react';
 import Launch from '../components/Launch';
 import { store } from "../stores/store";
 
 const LaunchesView = () => {
-    const {dispatch, state} = useContext(store);
+    const { state } = useContext(store);
 
     if (state.ui.error.show) {
         return (
