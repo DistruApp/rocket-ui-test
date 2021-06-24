@@ -1,9 +1,18 @@
 import React, {useContext} from 'react';
-import { store } from "../stores/store";
+import {store} from "../stores/store";
 
 const Launch = ({ launch }) => {
+    const { dispatch, state } = useContext(store)
 
-    const costPerLaunch = 'something'
+    const costPerLaunch = () => {
+        if (launch.rocket) {
+            const rocket = state.rockets.filter(rocket => rocket.id === launch.rocket)
+            if (rocket[0] && rocket[0].cost_per_launch) {
+                return `$${rocket[0].cost_per_launch.toLocaleString()}`;
+            }
+        }
+        return null;
+    }
 
     return (
         <>
@@ -25,7 +34,7 @@ const Launch = ({ launch }) => {
                             Cost per Launch
                         </h5>
                         <span>
-                            { costPerLaunch }
+                            { costPerLaunch() }
                         </span>
                     </div>
                 </>

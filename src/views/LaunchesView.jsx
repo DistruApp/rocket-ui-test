@@ -33,6 +33,7 @@ const LaunchesView = () => {
                     state.launches.map((launch) => {
                         return (
                             <Launch
+                                key={launch.id}
                                 launch={launch}
                             />
                         );
