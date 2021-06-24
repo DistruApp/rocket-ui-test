@@ -20,7 +20,6 @@
   "homepage": "https://github.com/ReactJSResources/react-webpack-babel#readme",
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
-    "axios": "^0.18.0",
     "normalize.css": "^7.0.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
