@@ -1,11 +1,15 @@
 import { useContext, useEffect } from "react";
-import {store} from "./store";
-import { fetchLaunches } from "./queries";
+import { store } from "./store";
+import fetchLaunches from "./queries";
 
-export const LoadData = () => {
+const LoadData = ({children}) => {
     const { dispatch, state } = useContext(store);
 
     useEffect( () => {
         fetchLaunches(dispatch, state);
-    })
+    }, []);
+
+    return children;
 };
+
+export default LoadData;
