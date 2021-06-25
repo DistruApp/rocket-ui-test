@@ -8,7 +8,7 @@ async function fetchLaunches(dispatch, state) {
     } else {
         dispatch({type: 'set-error', payload: {
             show: true,
-            msg: 'Error updating launch data. Please try refreshing your browser.'}
+            msg: 'Error loading launch data. Please try refreshing your browser.'}
         })
     }
     dispatch({type: 'set-loading', payload: false})
@@ -24,7 +24,7 @@ async function fetchRockets(dispatch, state) {
     } else {
         dispatch({type: 'set-error', payload: {
             show: true,
-            msg: 'Error updating rocket data. Please try refreshing your browser.'}
+            msg: 'Error loading rocket data. Please try refreshing your browser.'}
         })
     }
     dispatch({type: 'set-loading', payload: false})

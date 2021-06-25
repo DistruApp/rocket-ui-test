@@ -9,7 +9,12 @@ const LaunchesContainer = () => {
         return (
             <>
                 <h2>SpaceX Launches</h2>
-                { state.ui.error.msg }
+                <div className="error-msg">
+                    { state.ui.error.msg
+                        ? state.ui.error.msg
+                        : 'Error loading data. Please try refreshing your browser.'
+                    }
+                </div>
             </>
         );
     }
@@ -18,9 +23,9 @@ const LaunchesContainer = () => {
         return (
             <>
                 <h2>SpaceX Launches</h2>
-                <span>
+                <div className="loading-msg">
                     Loading launch data...
-                </span>
+                </div>
             </>
         );
     }
