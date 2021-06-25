@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import Launch from './Launch';
 import { store } from "../stores/store";
+import ErrorMessage from "./utils/ErrorMessage";
+import Loading from "./utils/Loading";
 
 const LaunchesContainer = () => {
     const { state } = useContext(store);
@@ -9,12 +11,7 @@ const LaunchesContainer = () => {
         return (
             <>
                 <h2>SpaceX Launches</h2>
-                <div className="error-msg">
-                    { state.ui.error.msg
-                        ? state.ui.error.msg
-                        : 'Error loading data. Please try refreshing your browser.'
-                    }
-                </div>
+                <ErrorMessage />
             </>
         );
     }
@@ -23,9 +20,7 @@ const LaunchesContainer = () => {
         return (
             <>
                 <h2>SpaceX Launches</h2>
-                <div className="loading-msg">
-                    Loading launch data...
-                </div>
+                <Loading />
             </>
         );
     }
