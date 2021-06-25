@@ -6,12 +6,10 @@ import {
 import LaunchesContainer from './components/Launches/LaunchesContainer';
 
 const Routes = () => (
-  <Router>
-    <>
-      <Route exact path="/" component={ LaunchesContainer }/>
-      <Route path="/Launches" component={ LaunchesContainer }/>
-    </>
-  </Router>
+    <Router>
+        <Route exact path="/" component={ LaunchesContainer }/>
+        <Route path="/Launches" component={ LaunchesContainer }/>
+    </Router>
 );
 
 export default Routes;

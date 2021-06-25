@@ -16,12 +16,14 @@ const Launch = ({ launch }) => {
         <div className="launch-container"
             onClick={() => toggleShowDetail(launch.id)}
         >
-            <h2>
+            <h3>
                 { launch.name }
-            </h2>
+            </h3>
             <div className="launch-overview">
                 <div>
-                    <h5>Flight Number</h5>
+                    <h5>
+                        Flight Number
+                    </h5>
                     <span>
                         { launch.flight_number }
                     </span>
@@ -36,7 +38,10 @@ const Launch = ({ launch }) => {
                 </div>
             </div>
             {
-                showLaunchDetail && <LaunchDetail launch={launch} />
+                showLaunchDetail &&
+                    <LaunchDetail
+                        launch={launch}
+                    />
             }
         </div>
     );

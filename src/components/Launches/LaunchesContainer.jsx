@@ -9,7 +9,9 @@ const LaunchesContainer = () => {
 
     return (
         <>
-            <h2>SpaceX Launches</h2>
+            <h2>
+                SpaceX Launches
+            </h2>
             {
                 state.ui.error.show &&
                     <ErrorMessage />
