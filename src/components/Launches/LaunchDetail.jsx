@@ -34,6 +34,12 @@ const LaunchDetail = ({ launch }) => {
                                 <span>
                                     { `$${rocket.cost_per_launch.toLocaleString()}` }
                                 </span>
+                                <h5>
+                                    Launched by
+                                </h5>
+                                <span>
+                                    { rocket.company }
+                                </span>
                             </div>
                         </>
                 }
@@ -59,8 +65,9 @@ LaunchDetail.propTypes = {
     launch: PropTypes.shape({
         details: PropTypes.string,
         rocket: PropTypes.shape({
-            name: PropTypes.string,
             cost_per_launch: PropTypes.number,
+            name: PropTypes.string,
+            company: PropTypes.string,
         })
     }).isRequired
 }
