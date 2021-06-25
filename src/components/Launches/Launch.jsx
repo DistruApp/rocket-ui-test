@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import { store } from "../stores/store";
+import PropTypes from "prop-types";
+import { store } from "../../stores/store";
 import LaunchDetail from "./LaunchDetail";
 
 const Launch = ({ launch }) => {
@@ -8,7 +9,7 @@ const Launch = ({ launch }) => {
     const showLaunchDetail = state.ui.showLaunchDetail.show && state.ui.showLaunchDetail.id === launch.id;
 
     const toggleShowDetail = (launchId) => {
-        dispatch({type: 'set-show-launch-detail', payload: {show: !showLaunchDetail, id: launchId}})
+        dispatch({type: 'set-show-launch-detail', payload: {show: !showLaunchDetail, id: launchId}});
     }
 
     return (
@@ -39,6 +40,15 @@ const Launch = ({ launch }) => {
             }
         </div>
     );
+}
+
+Launch.propTypes = {
+    launch: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        flight_number: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        success: PropTypes.bool.isRequired,
+    }).isRequired
 }
 
 export default Launch;

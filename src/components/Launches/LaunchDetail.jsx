@@ -1,10 +1,11 @@
-import React, {useContext} from 'react';
-import { store } from "../stores/store";
+import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
+import { store } from "../../stores/store";
 
-const Launch = ({ launch }) => {
-    const { state } = useContext(store)
+const LaunchDetail = ({ launch }) => {
+    const { state } = useContext(store);
 
-    const rocket = state.rockets.filter(rocket => rocket.id === launch.rocket)[0]
+    const rocket = state.rockets.filter(r => r.id === launch.rocket)[0];
 
     return (
         <>
@@ -54,4 +55,14 @@ const Launch = ({ launch }) => {
     );
 }
 
-export default Launch;
+LaunchDetail.propTypes = {
+    launch: PropTypes.shape({
+        details: PropTypes.string,
+        rocket: PropTypes.shape({
+            name: PropTypes.string,
+            cost_per_launch: PropTypes.number,
+        })
+    }).isRequired
+}
+
+export default LaunchDetail;

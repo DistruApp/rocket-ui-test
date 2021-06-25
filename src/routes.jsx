@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom';
-import LaunchesContainer from './components/LaunchesContainer';
+import LaunchesContainer from './components/Launches/LaunchesContainer';
 
 const Routes = () => (
   <Router>
