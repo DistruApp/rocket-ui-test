@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/components/LaunchDetail.jsx</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">src/components</a> LaunchDetail.jsx
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">33.33% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>6/18</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">37.5% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>6/16</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable camelcase */
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import _ from 'lodash';
+&nbsp;
+import clsx from 'clsx';
+import { TabBar, Tab } from './tabs'
+import DisplayField from './DisplayField'
+&nbsp;
+// I would like to split these Tab content components out into multiple files with a different file
+// structure, but I didnt for the sake of time
+const RocketTab = <span class="fstat-no" title="function not covered" >({</span> values }) =&gt; <span class="cstat-no" title="statement not covered" >&lt;div&gt;</span>
+  &lt;div&gt;
+    &lt;DisplayField label="Rocket Name" value={values.rocket_name} /&gt;
+    &lt;DisplayField label="Rocket Type" value={values.rocket_type} /&gt;
+    &lt;DisplayField label="Rocket Description" value={values.description} /&gt;
+    &lt;DisplayField label="Cost Per Launch" value={_.get(values, 'cost_per_launch', '').toLocaleString('en-US', { style: 'currency', currency: 'USD' })} /&gt;
+    &lt;DisplayField label="Stages" value={values.stages} /&gt;
+    &lt;DisplayField label="Success Rate Percent" value={values.success_rate_pct} /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&nbsp;
+RocketTab.propTypes = {
+  values: PropTypes.object.isRequired
+}
+&nbsp;
+const MissionDetailsTab = <span class="fstat-no" title="function not covered" >({</span> values }) =&gt; <span class="cstat-no" title="statement not covered" >&lt;div&gt;</span>
+  &lt;DisplayField label="Site Name" value={`${_.get(values, 'launch_site.site_name')} - ${_.get(values, 'launch_site.site_name_long')}`} /&gt;
+&lt;/div&gt;
+&nbsp;
+MissionDetailsTab.propTypes = {
+  values: PropTypes.object.isRequired
+}
+&nbsp;
+const LaunchDetail = <span class="fstat-no" title="function not covered" >({</span> currentLaunch = <span class="branch-0 cbranch-no" title="branch not covered" >{},</span> toggleDetailDrawer, fetchingLaunch }) =&gt; {
+  const { launch = <span class="branch-0 cbranch-no" title="branch not covered" >{},</span> rocket = <span class="branch-0 cbranch-no" title="branch not covered" >{} </span>} = <span class="cstat-no" title="statement not covered" >currentLaunch;</span>
+  const { mission_name, launch_date_local, details, launch_success, launch_failure_details } = <span class="cstat-no" title="statement not covered" >launch;</span>
+  const missionPatch = <span class="cstat-no" title="statement not covered" >_.get(launch, 'links.mission_patch_small');</span>
+&nbsp;
+  // define tabs
+  const tabs = <span class="cstat-no" title="statement not covered" >{ rocket: 'Rocket', missionDetails: 'Additional Mission Details' }</span>
+  const [selectedTab, setSelectedTab] = <span class="cstat-no" title="statement not covered" >useState('rocket');</span>
+&nbsp;
+  const tabOnChange = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(v</span>alue) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    setSelectedTab(value);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return &lt;div className={clsx('launch-detail', { open: currentLaunch.launch })}&gt;</span>
+    {/* I would have liked to implement a better spinner here */}
+    {fetchingLaunch &amp;&amp; &lt;div className="no-selection"&gt;FETCHING LAUNCH...&lt;/div&gt;}
+    {currentLaunch.launch &amp;&amp; !fetchingLaunch ? &lt;React.Fragment&gt;
+      &lt;div className="title-bar"&gt;
+        {/* When the drawer closes on mobile, the content goes away before the animation finishes, which doesnt look great.
+        I would normally solve this a timeout that matches the animation duration to prevent that from happening */}
+        &lt;button type="button" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >toggleDetailDrawer(false)}</span>&gt;&lt;h5&gt;{'&lt; BACK'}&lt;/h5&gt;&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div className="hero-info"&gt;
+        &lt;div className="launch-image"&gt;
+          &lt;div className="launch-image"&gt;
+            {missionPatch ? &lt;img src={missionPatch} alt={`${launch.mission_name}`} /&gt; : &lt;div className="mission-patch-not-found"&gt;MISSION PATCH NOT AVAILABLE&lt;/div&gt;}
+          &lt;/div&gt;
+&nbsp;
+        &lt;/div&gt;
+        &lt;div className="hero-details"&gt;
+          &lt;h1&gt;{mission_name}&lt;/h1&gt;
+          {/* For a prod build, I would have written a separate utility to centralize date formatting */}
+          &lt;h4 className="launch-date"&gt;{new Date(launch_date_local).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}&lt;/h4&gt;
+          &lt;DisplayField label="Launch Description" value={details} /&gt;
+          &lt;h4 className={clsx({ 'text-success': launch_success, 'text-error': !launch_success })} &gt;MISSION {launch_success ? 'SUCCESS' : 'FAILURE'}&lt;/h4&gt;
+          {!launch_success &amp;&amp; &lt;DisplayField label="Failure Reason" value={_.get(launch_failure_details, 'reason')} /&gt;}
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div className="launch-detail-tabs"&gt;
+        &lt;TabBar selectedTab={selectedTab} onChange={tabOnChange}&gt;
+          {Object.keys(tabs).map(<span class="fstat-no" title="function not covered" >ke</span>y =&gt; <span class="cstat-no" title="statement not covered" >&lt;Tab value={key}&gt;&lt;h5&gt;{tabs[key]}&lt;/h5&gt;&lt;/Tab&gt;)</span>}
+        &lt;/TabBar&gt;
+        {selectedTab === 'rocket' &amp;&amp; &lt;RocketTab values={rocket} /&gt;}
+        {selectedTab === 'missionDetails' &amp;&amp; &lt;MissionDetailsTab values={launch} /&gt;}
+      &lt;/div&gt;
+    &lt;/React.Fragment&gt; : &lt;div className="no-selection"&gt;
+      &lt;h4&gt;Select a launch from the left to view specific details about it&lt;/h4&gt;
+    &lt;/div&gt;
+    }
+  &lt;/div &gt;
+}
+&nbsp;
+LaunchDetail.propTypes = {
+  currentLaunch: PropTypes.object,
+  toggleDetailDrawer: PropTypes.func.isRequired,
+  fetchingLaunch: PropTypes.bool
+}
+&nbsp;
+export default LaunchDetail;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jun 30 2021 16:56:35 GMT-0400 (Eastern Daylight Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
