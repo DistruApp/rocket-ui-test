@@ -27,9 +27,9 @@ const LaunchCard = ({ launch = {}, launchOnClick, selected }) => {
 }
 
 LaunchCard.propTypes = {
-  launch: PropTypes.object,
-  launchOnClick: PropTypes.func,
-  selected: PropTypes.bool,
+  launch: PropTypes.object.isRequired,
+  launchOnClick: PropTypes.func.isRequired,
+  selected: PropTypes.bool.isRequired,
 }
 
 export default LaunchCard;

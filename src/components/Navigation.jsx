@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import clsx from 'clsx';
 import SvgIcons from '../shared/SvgIcon';
 
-const Navigation = (props) => {
+const Navigation = () => {
   const { location } = useHistory();
   // const location = { pathname: '' }
 

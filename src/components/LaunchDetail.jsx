@@ -7,8 +7,8 @@ import clsx from 'clsx';
 import { TabBar, Tab } from './tabs'
 import DisplayField from './DisplayField'
 
-
-
+// I would like to split these Tab content components out into multiple files with a different file
+// structure, but I didnt for the sake of time
 const RocketTab = ({ values }) => <div>
   <div>
     <DisplayField label="Rocket Name" value={values.rocket_name} />
@@ -32,24 +32,27 @@ MissionDetailsTab.propTypes = {
   values: PropTypes.object.isRequired
 }
 
-const LaunchDetail = ({ currentLaunch = {}, toggleDetailDrawer }) => {
+const LaunchDetail = ({ currentLaunch = {}, toggleDetailDrawer, fetchingLaunch }) => {
   const { launch = {}, rocket = {} } = currentLaunch;
   const { mission_name, launch_date_local, details, launch_success, launch_failure_details } = launch;
-
   const missionPatch = _.get(launch, 'links.mission_patch_small');
+
+  // define tabs
   const tabs = { rocket: 'Rocket', missionDetails: 'Additional Mission Details' }
   const [selectedTab, setSelectedTab] = useState('rocket');
-
-
 
   const tabOnChange = (value) => {
     setSelectedTab(value);
   }
 
   return <div className={clsx('launch-detail', { open: currentLaunch.launch })}>
-    {currentLaunch.launch ? <React.Fragment>
+    {/* I would have liked to implement a better spinner here */}
+    {fetchingLaunch && <div className="no-selection">FETCHING LAUNCH...</div>}
+    {currentLaunch.launch && !fetchingLaunch ? <React.Fragment>
       <div className="title-bar">
-        <button onClick={() => toggleDetailDrawer(false)}><h5>{'< BACK'}</h5></button>
+        {/* When the drawer closes on mobile, the content goes away before the animation finishes, which doesnt look great.
+        I would normally solve this a timeout that matches the animation duration to prevent that from happening */}
+        <button type="button" onClick={() => toggleDetailDrawer(false)}><h5>{'< BACK'}</h5></button>
       </div>
       <div className="hero-info">
         <div className="launch-image">
@@ -60,6 +63,7 @@ const LaunchDetail = ({ currentLaunch = {}, toggleDetailDrawer }) => {
         </div>
         <div className="hero-details">
           <h1>{mission_name}</h1>
+          {/* For a prod build, I would have written a separate utility to centralize date formatting */}
           <h4 className="launch-date">{new Date(launch_date_local).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</h4>
           <DisplayField label="Launch Description" value={details} />
           <h4 className={clsx({ 'text-success': launch_success, 'text-error': !launch_success })} >MISSION {launch_success ? 'SUCCESS' : 'FAILURE'}</h4>
@@ -76,15 +80,14 @@ const LaunchDetail = ({ currentLaunch = {}, toggleDetailDrawer }) => {
     </React.Fragment> : <div className="no-selection">
       <h4>Select a launch from the left to view specific details about it</h4>
     </div>
-
     }
-
-
   </div >
 }
 
 LaunchDetail.propTypes = {
-  currentLaunch: PropTypes.object
+  currentLaunch: PropTypes.object,
+  toggleDetailDrawer: PropTypes.func.isRequired,
+  fetchingLaunch: PropTypes.bool
 }
 
 export default LaunchDetail;

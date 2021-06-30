@@ -58,7 +58,7 @@ const LaunchesView = ({ dispatch, launchesCollection = {}, launchCollection }) =
             selected: _.get(currentLaunch, 'launch.flight_number') === launch.flight_number
           }} />))}</ul>;
         </div>
-        <LaunchDetail currentLaunch={currentLaunch} toggleDetailDrawer={toggleDetailDrawer} />
+        <LaunchDetail fetchingLaunch={fetchingLaunch} currentLaunch={currentLaunch} toggleDetailDrawer={toggleDetailDrawer} />
         {/* <div className="launch-detail" style={{ height: '100%', paddingLeft: '24px' }}>
           {'No Launches'}
         </div> */}
