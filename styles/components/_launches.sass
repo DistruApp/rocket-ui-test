@@ -1,0 +1,116 @@
+@import "styles/abstracts/_variables"
+@import "styles/abstracts/_mixins"
+
+.launches-wrapper
+  flex-grow: 1
+  display: flex
+  overflow: hidden
+
+  .launches-list-wrapper
+    overflow: auto
+    flex: 0 0 auto
+
+.mission-patch-not-found
+  background-color: #c7c7c7
+  text-align: center
+  padding-top: 16px
+  color: white
+  height: 100%
+  width: 100%
+
+.launches-list
+  flex-grow: 0
+  width: 480px
+
+  $card-height: 122px
+  $card-spacing: 8px
+
+  .launch-card
+    width: calc(100% - (#{$card-spacing} * 2))
+    min-height: $card-height
+    display: flex
+    cursor: pointer
+    border-radius: 8px
+    padding: $card-spacing
+    background-color: white
+    margin: $card-spacing
+    transition: margin 100ms linear
+    color: $spacexBlue
+
+    &:hover
+      margin-left: $card-spacing * 2
+
+    .launch-card-image
+      width: $card-height - 16px
+      height: $card-height - 16px
+
+      img
+        height: 100%
+
+    .launch-card-detail
+      padding-left: 8px
+      color: inherit
+
+      > div
+        padding: 4px 0
+
+    &.selected
+      background-color: $spacexBlue
+      color: white
+
+.launch-detail
+  height: 100%
+  flex-grow: 1
+  margin: 8px 8px 8px 16px
+  border-radius: 8px
+  padding: 16px
+  background-color: white
+  transition: left 200ms ease-in-out
+
+  .no-selection
+    text-align: center
+    height: 100%
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: center
+
+  .hero-info
+    display: flex
+
+    .launch-image
+      width: 300px
+      height: 300px
+      flex-grow: 0
+
+      img
+        height: 100%
+
+    .hero-details
+      flex-grow: 1
+      padding-left: 16px
+
+      h4, h3
+        padding: 8px 0
+
+      .success
+        color: $success
+
+      .failure
+        color: $alert
+
+@include breakpoint($md)
+  .launches-list, .launches-list-wrapper
+    width: 100%
+
+  .launch-detail
+    position: fixed
+    top: 0
+    bottom: 0
+    left: 100%
+    width: 100%
+    margin: 0
+    border-radius: 0
+
+    &.open
+      left: 0

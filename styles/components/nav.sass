@@ -1,0 +1,104 @@
+@import "styles/abstracts/_mixins"
+@import "styles/abstracts/_variables"
+
+nav
+  width: 200px
+  border-right: 2px solid #999
+  background: #eee
+  height: 100%
+  transition: left 200ms linear
+  padding: 16px
+
+  .nav-drawer-title-bar
+    display: flex
+    align-items: center
+
+    .nav-drawer-toggle-close
+      width: 24px
+      height: 24px
+      cursor: pointer
+      display: none
+
+      > div
+        height: 24px
+        width: 2px
+        margin-left: 12px
+        background-color: $spacexBlue
+        transform: rotate(45deg)
+        z-index: 1
+
+        > div
+          height: 24px
+          width: 2px
+          background-color: $spacexBlue
+          transform: rotate(90deg)
+          z-index: 2
+
+    .drawer-title
+      padding-left: 32px
+      display: flex
+      align-items: center
+
+      .logo
+        width: 100%
+
+  > ul
+    list-style: none
+    padding: 8px
+    margin: 0
+
+    > li
+      margin: 4px
+      padding: 4px
+      // background: #ccc
+      // border-bottom: 2px solid #ccc
+
+      &:hover
+
+        h4
+          color: lighten($spacexBlue, 10%)
+
+        svg
+          color: lighten($spacexBlue, 10%)
+
+      > a
+        width: 100%
+        text-decoration: none
+        display: block
+
+      > div
+        display: flex
+        align-items: center
+
+      h4
+        padding-left: 8px
+
+.nav-drawer-toggle
+  padding: 8px
+  display: none
+  cursor: pointer
+
+  > div
+    width: 24px
+    height: 4px
+    background-color: $spacexBlue
+    margin: 4px 0
+
+@include breakpoint($md)
+  nav
+    width: 85%
+    position: fixed
+    left: -85%
+
+    &.open
+      left: 0
+
+    .drawer-title .logo
+      height: 40px
+      max-width: 100%
+
+    .nav-drawer-title-bar .nav-drawer-toggle-close
+      display: initial
+
+  .nav-drawer-toggle
+    display: initial

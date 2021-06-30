@@ -1,0 +1,1 @@
+export const spacexBlue = '#005288';

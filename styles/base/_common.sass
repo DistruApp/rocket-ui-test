@@ -1,3 +1,94 @@
-.small-img
-  display: block
-  width: 25%
+@import "styles/abstracts/_variables"
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap')
+
+body
+  background: #ece7e7
+  margin: 0
+  color: $spacexBlue
+
+h1
+  font-size: 3rem
+
+h2
+  font-size: 2.5rem
+
+h3
+  font-size: 1.75rem
+  font-weight: bold
+
+h4
+  font-size: 1.25rem
+  font-weight: bold
+h5
+  font-size: 1rem
+  font-weight: bold
+
+strong
+  font-weight: bold
+
+p
+  line-height: 1.4
+
+.text-success
+  color: $success
+
+.text-error
+  color: $alert
+
+a:visited
+  color: $spacexBlue
+
+button
+  background-color: transparent
+  border: none
+  color: $spacexBlue
+  cursor: pointer
+
+#app
+  font-family: 'Roboto', sans-serif
+  display: flex
+  flex-direction: row
+  position: absolute
+  width: 100%
+  height: 100vh
+
+  > div
+    display: flex
+    flex-direction: column
+    width: 100%
+
+    main
+
+      display: flex
+      flex: 1
+      flex-direction: row
+      height: 100%
+
+      > section
+        flex: 1
+        overflow: auto
+        padding: 20px
+        height: 100%
+
+        .route-title-bar
+          display: flex
+          align-items: center
+
+        .route-title
+          margin-top: 0
+          // border-bottom: 2px solid #999
+          // color: #666
+          margin-left: 24px
+
+        .route-container
+          display: flex
+          flex-direction: column
+          height: 100%
+          overflow: hidden
+
+          .route-content
+            overflow: auto
+
+.svg-icon
+  path
+    fill: currentColor

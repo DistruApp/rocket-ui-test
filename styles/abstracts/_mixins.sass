@@ -1,9 +1,14 @@
 // All mixins defined here will be automatically
 // available to all sass files thanks to
 // 'sass-resources-loader'
+@import "styles/abstracts/_variables"
 
 =button($color)
   background-color: $color
   border-radius: 51px
   color: white
   padding: 5px
+
+@mixin breakpoint($breakp)
+  @media screen and (max-width: $breakp)
+    @content

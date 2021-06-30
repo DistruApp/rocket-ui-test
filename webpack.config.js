@@ -1,4 +1,4 @@
-"use strict";
+
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -34,10 +34,12 @@ module.exports = {
   module: {
     rules: [
       { // handle images
-        test: /\.(png|svg|jpg|gif)$/,
-        use: {
-          loader: "file-loader"
-        }
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
       },
       { // handles css in legacy app
         test: /\.css$/,
@@ -51,7 +53,15 @@ module.exports = {
         use: [
           "style-loader",
           "css-loader",
-          "sass-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              sassOptions: {
+                indentWidth: 4,
+                includePaths: ["./src/styles"],
+              },
+            },
+          },
           // {
           //   loader: "sass-resources-loader",
           //   options: {
@@ -78,7 +88,7 @@ module.exports = {
         use: 'babel-loader'
       }
     ]
-  },  resolve: {
+  }, resolve: {
     extensions: ['.js', '.jsx'],
     modules: [
       path.join(__dirname, "src"),
@@ -111,7 +121,7 @@ module.exports = {
       template: './src/template.html',
       files: {
         css: ['style.css'],
-        js: [ "bundle.js"],
+        js: ["bundle.js"],
       }
     }),
   ]

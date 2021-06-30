@@ -18,7 +18,7 @@ const receiveLaunches = response => ({
 
 export const fetchLaunches = dispatch => {
   dispatch(requestLaunches());
-  return LaunchService.get().then(response => dispatch(receiveLaunches(response)));
+  return LaunchService.getLaunches().then(response => dispatch(receiveLaunches(response)));
 };
 
 const shouldFetchLaunches = launchCollection => !launchCollection || !launchCollection.fetching;
