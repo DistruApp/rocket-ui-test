@@ -1,8 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const LaunchPanel = () => {
-  return <div>Launch Panel</div>
+const LaunchPanel = ({
+  rocketId,
+  costPerLaunch,
+  description
+}) => {
+  return <div>
+    <p>{rocketId}</p>
+    <p>{costPerLaunch}</p>
+    <p>{description}</p>
+  </div>
 }
 
 LaunchPanel.propTypes = {
