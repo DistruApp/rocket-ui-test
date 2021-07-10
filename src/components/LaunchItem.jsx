@@ -9,13 +9,22 @@ const LaunchItem = ({
   costPerLaunch,
   description,
   isSelected
-}) => <li onClick={onClick}>
-    <h2>{missionName}</h2>
+}) => <li>
+    <button onClick={onClick} onKeyPress={onClick} type="button">
+      <h2>{missionName}</h2>
+    </button>
+    
     <div> Flight Number: {flightNumber} </div>
+
     {isSelected && <div>
-      <p>{rocketId}</p>
-      <p>{costPerLaunch}</p>
-      <p>{description}</p>
+      <h3>ROCKET:</h3>
+      <div style={{display: 'flex', alignContent: 'space-between'}}>
+        <div stlye={{ flex: 3 }}>
+          <p>Name: {rocketId}</p>
+          <p>Cost Per Rocket: {costPerLaunch}</p>
+        </div>
+        <p style={{ flex: 1, paddingLeft: 25 }}>{description}</p>
+      </div>
     </div>}
   </li>
 
