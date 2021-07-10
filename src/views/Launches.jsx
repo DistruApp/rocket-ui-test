@@ -48,7 +48,9 @@ const LaunchList = (props) => {
       }
     </ul>
    {hasSelectedLaunch && <LaunchPanel 
-     rocketId={currentLaunch.rocket_id}
+     rocketId={currentLaunch.rocket.rocket.id}
+     costPerLaunch={currentLaunch.rocket.rocket.cost_per_launch}
+     description={currentLaunch.rocket.rocket.description}
    />}
   </div>
 }

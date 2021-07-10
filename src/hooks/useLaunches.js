@@ -4,13 +4,8 @@ import {
   useQuery,
   gql
 } from "@apollo/client";
-const useLaunches = () => {
 
-  const {
-    data,
-    loading,
-    error
-  } = useQuery(gql`
+const LAUNCHES = gql`
 {
   launches {
     id
@@ -26,7 +21,15 @@ const useLaunches = () => {
   }
 }
 
-`)
+`
+
+const useLaunches = () => {
+
+  const {
+    data,
+    loading,
+    error
+  } = useQuery(LAUNCHES)
 
 
   const [currentLaunch, setCurrentLaunch] = useState({
@@ -43,7 +46,6 @@ const useLaunches = () => {
   const hasSelectedLaunch = currentLaunch.flight_number.length !== 0
 
   const toggleLaunch = (nextLaunch) => {
-    console.log('toggle launch', nextLaunch)
     if(nextLaunch.flight_number !== currentLaunch.flight_number){
       return setCurrentLaunch(nextLaunch)
     }
