@@ -1,16 +1,52 @@
-import React, { Component } from 'react';
+
+
+import React, { Component, useState } from 'react';
+import PropTypes from 'prop-types';
 import ConnectedView from './ConnectedView';
 import {fetchLaunchesIfNeeded} from "../actions/Launches";
 import LaunchItem from '../components/LaunchItem';
+import LaunchPanel from '../components/LaunchPanel'
+
+/* eslint-disable react/require-default-props */
+/* eslint-disable react/no-unused-prop-types */
+
+const LaunchList = (props) => {
+  console.log(props)
+  return <div style={{
+    display: 'flex'
+  }}>
+    <LaunchesView {...props} />
+    <LaunchPanel />
+  </div>
+}
+
+
+const LaunchItemAPIProps = {
+  fetching: PropTypes.bool.isRequired,
+  launches: PropTypes.arrayOf(PropTypes.objectOf({
+    launch_id: PropTypes.string
+  }))
+}
+
+LaunchList.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  launchCollection: PropTypes.objectOf(LaunchItemAPIProps)
+}
 
 class LaunchesView extends Component {
-  componentDidMount() {
-    const { dispatch, launchesCollection } = this.props;
-    fetchLaunchesIfNeeded({ dispatch, launchesCollection });
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    launchCollection: PropTypes.objectOf(LaunchItemAPIProps)
   }
 
-  getContent() {
+  componentDidMount() {
+    const { dispatch, launchCollection } = this.props;
+    fetchLaunchesIfNeeded({ dispatch, launchCollection });
+  }
+
+  getList() {
     const { launchCollection } = this.props;
+
     if (!launchCollection || launchCollection.fetching) {
       return <div> LOADING </div>;
     }
@@ -27,15 +63,18 @@ class LaunchesView extends Component {
 
     return <ul>{launches}</ul>;
   }
-
+ 
   render() {
     return (
       <div>
         <h2> SpaceX launches </h2>
-        {this.getContent()}
+        {this.getList()}
       </div>
     );
   }
 }
 
-export default ConnectedView(LaunchesView, 'launches');
+
+
+
+export default ConnectedView(LaunchList, 'launches');

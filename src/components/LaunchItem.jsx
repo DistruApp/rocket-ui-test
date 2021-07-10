@@ -4,12 +4,10 @@ import PropTypes from 'prop-types';
 const LaunchItem = ({
   missionName,
   flightNumber
-}) => {
-  return <li>
+}) => <li>
     <h2>{missionName}</h2>
     <div> Flight Number: {flightNumber} </div>
   </li>
-}
 
 LaunchItem.propTypes = {
   missionName: PropTypes.string.isRequired,
