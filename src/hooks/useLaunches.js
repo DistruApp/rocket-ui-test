@@ -56,7 +56,7 @@ const useLaunches = () => {
   return {
     loading,
     error,
-    launches: data.launches && data.launches || [],
+    launches: data && data.launches || [],
     currentLaunch,
     toggleLaunch
   }

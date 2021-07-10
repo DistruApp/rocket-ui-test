@@ -23,10 +23,10 @@ const renderApp = (Component) => {
   ReactDOM.render(
     <ApolloProvider client={client}>
       <Provider store={store}>
-      <AppContainer>
-        <Component/>
-      </AppContainer>
-    </Provider>
+        <AppContainer>
+          <Component/>
+        </AppContainer>
+      </Provider>
     </ApolloProvider>,
     document.getElementById('app')
   );
