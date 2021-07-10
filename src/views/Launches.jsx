@@ -19,13 +19,11 @@ class LaunchesView extends Component {
       return <div> NO DATA </div>;
     }
 
-    const launches = launchCollection.launches.map(launch => {
-      return <LaunchItem 
+    const launches = launchCollection.launches.map(launch => <LaunchItem 
         key={launch.launch_id}
         missionName={launch.mission_name}
         flightNumber={launch.flight_number}        
-      />
-    })
+      />)
 
     return <ul>{launches}</ul>;
   }
