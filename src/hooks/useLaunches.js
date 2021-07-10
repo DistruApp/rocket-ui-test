@@ -24,7 +24,6 @@ const LAUNCHES = gql`
 `
 
 const useLaunches = () => {
-
   const {
     data,
     loading,
@@ -43,8 +42,6 @@ const useLaunches = () => {
     }
   })
 
-  const hasSelectedLaunch = currentLaunch.flight_number.length !== 0
-
   const toggleLaunch = (nextLaunch) => {
     if(nextLaunch.flight_number !== currentLaunch.flight_number){
       return setCurrentLaunch(nextLaunch)
@@ -61,7 +58,6 @@ const useLaunches = () => {
     error,
     launches: data.launches && data.launches || [],
     currentLaunch,
-    hasSelectedLaunch,
     toggleLaunch
   }
 }

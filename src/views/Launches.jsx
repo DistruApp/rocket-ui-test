@@ -1,25 +1,15 @@
-
-
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import ConnectedView from './ConnectedView';
-import {fetchLaunchesIfNeeded} from "../actions/Launches";
 import LaunchItem from '../components/LaunchItem';
-import LaunchPanel from '../components/LaunchPanel'
 import useLaunches from '../hooks/useLaunches'
 
-/* eslint-disable react/require-default-props */
-/* eslint-disable react/no-unused-prop-types */
-
-const LaunchList = (props) => {
-  console.log(props)
+const LaunchList = () => {
   const {
     launches,
     loading,
     error,
     currentLaunch,
     toggleLaunch,
-    hasSelectedLaunch
   } = useLaunches()
 
   if(loading){
@@ -34,38 +24,21 @@ const LaunchList = (props) => {
     return <div> NO DATA </div>
   }
 
-  return <div style={{
-    display: 'flex'
-  }}>
-    <ul>
+  return <ul>
       {
         launches.map(launch => <LaunchItem 
-          key={launch.launch_id}
+          key={launch.flight_number}
           missionName={launch.mission_name}
           flightNumber={launch.flight_number}
+          rocketId={launch.rocket.rocket.id}
+          costPerLaunch={launch.rocket.rocket.cost_per_launch}
+          description={launch.rocket.rocket.description}
           onClick={() => toggleLaunch(launch)}
+          isSelected={launch.flight_number === currentLaunch.flight_number}
         />)
       }
     </ul>
-   {hasSelectedLaunch && <LaunchPanel 
-     rocketId={currentLaunch.rocket.rocket.id}
-     costPerLaunch={currentLaunch.rocket.rocket.cost_per_launch}
-     description={currentLaunch.rocket.rocket.description}
-   />}
-  </div>
 }
 
-
-const LaunchItemAPIProps = {
-  fetching: PropTypes.bool.isRequired,
-  launches: PropTypes.arrayOf(PropTypes.objectOf({
-    launch_id: PropTypes.string
-  }))
-}
-
-LaunchList.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  launchCollection: PropTypes.objectOf(LaunchItemAPIProps)
-}
 
 export default ConnectedView(LaunchList, 'launches');
