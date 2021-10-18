@@ -18,5 +18,6 @@ module.exports = {
 		'no-underscore-dangle': 0,
 		'trailing-comma': 0,
 		'react/prop-types': 'off',
+		'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
 	},
 };
