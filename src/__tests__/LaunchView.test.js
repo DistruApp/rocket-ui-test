@@ -2,7 +2,7 @@ import React from 'react';
 import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import * as redux from "react-redux";
-import { LaunchesView } from '../views/Launches';
+import { LaunchesView } from '../views/LaunchesView';
 
 const mockDispatch = jest.fn();
 jest.mock('react-redux', () => ({

@@ -10,7 +10,7 @@ import "assets/_style.sass"  // Css-module styles
 
 import store from "./stores/root.stores";
 
-import { LaunchesView } from './views/Launches'
+import { LaunchesView } from './views/LaunchesView'
 import { Layout } from './components/Layout'
 
 const renderApp = () => {
