@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Layout component test renders Layout component without crashing 1`] = `
+Array [
+  <Layout>
+    <div />
+  </Layout>,
+]
+`;

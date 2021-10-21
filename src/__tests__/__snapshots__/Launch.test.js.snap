@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Launch component test renders Launch component without crashing 1`] = `
+Array [
+  <Launch
+    isOpen={false}
+    launch={
+      Object {
+        "_id": "1",
+        "flight_number": "Test Flight Number",
+        "mission_name": "Test Mission Name",
+        "rocket": Object {
+          "rocket_id": "1",
+        },
+      }
+    }
+    onClick={[Function]}
+  />,
+]
+`;

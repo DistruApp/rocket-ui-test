@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LaunchView component test renders LaunchView component without crashing 1`] = `
+Array [
+  <LaunchesView />,
+]
+`;
+
+exports[`LaunchView component test renders LaunchView component without crashing in Error 1`] = `
+Array [
+  <LaunchesView />,
+]
+`;
