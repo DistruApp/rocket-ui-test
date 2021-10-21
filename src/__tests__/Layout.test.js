@@ -7,7 +7,11 @@ configure({ adapter: new Adapter() });
 
 describe('Layout component test', () => {
   it('renders Layout component without crashing', () => {
-    const component = mount(<Layout><div></div></Layout>);
+    const component = mount(
+      <Layout>
+        <div></div>
+      </Layout>
+    );
     expect(component.getElements()).toMatchSnapshot();
   });
 });
