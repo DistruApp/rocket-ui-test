@@ -1,5 +1,5 @@
 import { createStore, combineReducers } from 'redux';
-import launchCollection from './LaunchCollectionReducer';
+import { actionHandlers as launchCollection } from './launch.stores';
 
 const rootReducer = combineReducers({
   launchCollection
