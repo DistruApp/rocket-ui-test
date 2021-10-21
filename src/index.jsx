@@ -1,31 +1,31 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {AppContainer} from 'react-hot-loader'
-import Routes from './routes'
-
-import "styles/base/_main.sass"  // Global styles
-import "styles/base/_common.sass"  // Global styles
-import "styles/_style.sass"  // Css-module styles
-
 import { Provider } from "react-redux";
-import store from "./stores/Root.js";
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 
-const renderApp = (Component) => {
+import "assets/base/_main.sass"  // Global styles
+import "assets/base/_common.sass"  // Global styles
+import "assets/_style.sass"  // Css-module styles
+
+import store from "./stores/root.stores";
+
+import { LaunchesView } from './views/Launches'
+import { Layout } from './components/Layout'
+
+const renderApp = () => {
   ReactDOM.render(
     <Provider store={store}>
       <AppContainer>
-        <Component/>
+      <Router>
+          <Layout>
+            <Route exact path="/" component={LaunchesView}/>
+          </Layout>
+        </Router>
       </AppContainer>
     </Provider>,
     document.getElementById('app')
   );
 };
 
-renderApp(Routes);
-
-// Webpack Hot Module Replacement API
-if (module.hot) {
-  module.hot.accept('./routes', () => {
-    renderApp(require('./routes').default);
-  })
-}
+renderApp();

@@ -1,50 +1,45 @@
-import React, { Component } from 'react';
-import ConnectedView from './ConnectedView';
-import {fetchLaunchesIfNeeded} from "../actions/Launches";
-import Launch from '../components/Launch';
+import React, { useEffect, useState, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchLaunchesIfNeeded } from "../actions/launches.actions";
+import { Launch } from '../components/Launch';
 
-class LaunchesView extends Component {
-  componentDidMount() {
-    const { dispatch, launchesCollection } = this.props;
-    fetchLaunchesIfNeeded({ dispatch, launchesCollection });
-  }
+export const LaunchesView = () => {
+  const dispatch = useDispatch();
+  const launchCollection = useSelector((state) => state.launchCollection);
+  const [launches, setLaunches] = useState([]);
+  const [idOfDetailedLaunch, setIdOfDetailedLaunch] = useState(0);
+  
+  const isLoading = useMemo(() => !launchCollection || launchCollection.fetching, [launchCollection]);
+  
+  const isError = useMemo(() => !launchCollection.launches.length, [launchCollection]);
 
-  getContent() {
-    const { launchCollection } = this.props;
+  useEffect(() => {
+    fetchLaunchesIfNeeded({ dispatch, launchCollection }).then(data => setLaunches(data.payload.launches));
+   }, []);
 
-    if (!launchCollection || launchCollection.fetching) {
-      return <div> LOADING </div>;
-    }
+   const handleOpenDetails = (id) => {
+    setIdOfDetailedLaunch(id);
+   }
 
-    if (!launchCollection.launches.length) {
-      return <div> NO DATA </div>;
-    }
-
-    let launches = [];
-
-    for (let i = 0; i < launchCollection.launches.length; i++) {
-      const launch = launchCollection.launches[i];
-
-      launches.push(
-        <Launch {...{
-          key: launch.launch_id,
-          launch
-        }} />
-
-      )
-    }
-
-    return <ul>{launches}</ul>;
-  }
-
-  render() {
-    return (
-      <div>
-        <h2> SpaceX launches </h2>
-        {this.getContent()}
-      </div>
+   if(isLoading){
+    return(
+      <div> LOADING </div>
     );
   }
-}
+  if(isError){
+    return(
+      <div> NO DATA </div>
+    );
+  }
 
-export default ConnectedView(LaunchesView, 'launches');
+  return(
+      <div>
+        <h2> SpaceX launches: Total {launches.length}</h2>
+        <div className="grid-container">
+          {launches.map((launch) => (
+            <Launch key={launch._id} launch={launch} onClick={handleOpenDetails} isOpen={idOfDetailedLaunch === launch._id}/>
+          ))}
+        </div>
+      </div>
+  );
+}
