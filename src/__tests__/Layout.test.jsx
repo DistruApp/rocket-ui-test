@@ -9,7 +9,7 @@ describe('Layout component test', () => {
   it('renders Layout component without crashing', () => {
     const component = mount(
       <Layout>
-        <div></div>
+        <div>test</div>
       </Layout>
     );
     expect(component.getElements()).toMatchSnapshot();
